@@ -1,0 +1,104 @@
+{
+  "format": "1080x1920",
+  "title_zh": "微軟執行長 Satya Nadella 長文",
+  "title_en": "Satya Nadella · \"Models as Insider Risks in the Super Intelligence Era\"",
+  "max_cut": 4.5,
+  "voice": {
+    "provider": "ElevenLabs",
+    "voice": "Door Chow (qDeYqHQrKRH839xMU4nb)",
+    "model": "eleven_multilingual_v2"
+  },
+  "music": "synth",
+  "shots": [
+    {
+      "keywords": [
+        "server room",
+        "data center"
+      ],
+      "highlight": [
+        "內部風險"
+      ],
+      "en": [
+        "Microsoft CEO Satya Nadella, in a new long essay,",
+        "argues AI models should be managed as an internal risk to the company."
+      ]
+    },
+    {
+      "keywords": [
+        "programming code",
+        "computer screen"
+      ],
+      "highlight": [
+        "說不清"
+      ],
+      "en": [
+        "Models are more capable than traditional software, yet can't explain why they act the way they do.",
+        "Yet we already let agents touch sensitive data and make critical decisions."
+      ]
+    },
+    {
+      "keywords": [
+        "computer operators",
+        "restricted area"
+      ],
+      "archival": true,
+      "highlight": [
+        "控制權分開"
+      ],
+      "en": [
+        "It's not that the model is malicious, but any role with permissions",
+        "can make mistakes or be compromised.",
+        "So the supply of intelligence must be separated from control."
+      ],
+      "pick": {
+        "source": "archive",
+        "id": "OnGuard1956",
+        "starts": [
+          630,
+          300,
+          120
+        ]
+      }
+    },
+    {
+      "keywords": [
+        "control room",
+        "computer"
+      ],
+      "archival": true,
+      "highlight": [
+        "模型外面"
+      ],
+      "en": [
+        "Control has to sit outside the model. The model can't police itself."
+      ],
+      "pick": {
+        "source": "archive",
+        "id": "OnGuard1956",
+        "starts": [
+          660
+        ]
+      }
+    }
+  ],
+  "end_card": {
+    "zh": [
+      "最值得信任的系統，",
+      "[[是最不需要信任模型的那一個。]]"
+    ],
+    "en": "The most trustworthy system is the one that needs you to trust the model the least.",
+    "by": "── 整理自 Satya Nadella〈Models as Insider Risks〉",
+    "dur": 4.0,
+    "bg_shot": 2
+  },
+  "cover": {
+    "ep": "試片",
+    "kicker": "Satya Nadella 長文",
+    "title": "把 AI 當成\n[[內部風險]]來管",
+    "subtitle": "控制放在模型外面，不讓模型自己管自己",
+    "clip_credit": "畫面：On Guard!（1956，Prelinger Archives，公有領域）",
+    "frame_shot": 3,
+    "frame_cut": 0,
+    "frame_offset": 1.0
+  }
+}

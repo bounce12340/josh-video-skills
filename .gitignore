@@ -1,0 +1,10 @@
+cache/
+node_modules/
+__pycache__/
+*.pyc
+*.bak*
+.env
+.env.*
+*.mp4
+*.mp3
+*.wav

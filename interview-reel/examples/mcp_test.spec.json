@@ -1,0 +1,200 @@
+{
+  "title": "MCP 共同創造者：[[整合只要寫一次]]",
+  "voice": {
+    "provider": "ElevenLabs",
+    "voice_id": "Nhs7eitvQWFTQBsf0yiT",
+    "model": "eleven_multilingual_v2"
+  },
+  "music": "synth",
+  "music_db": -19,
+  "clip_music_db": -8,
+  "gap": 0.28,
+  "segments": [
+    {
+      "type": "hook",
+      "broll": [
+        "usb c cable",
+        "computer cables ports"
+      ],
+      "lines": [
+        {
+          "en": "Every AI app wants its own custom connector to your tools.",
+          "zh": "每個 AI App 都要自己接一次你的工具？",
+          "card": {
+            "tag": "Anthropic 官方訪談",
+            "text": "AI 界的\n[[USB-C]]"
+          }
+        },
+        {
+          "en": "The co-creator of MCP explains why it doesn't have to be that way.",
+          "zh": "MCP 的共同創造者說，[[不必這樣]]"
+        }
+      ]
+    },
+    {
+      "type": "clip",
+      "url": "https://www.youtube.com/watch?v=PLyCki2K0Lg",
+      "channel": "Anthropic",
+      "official": true,
+      "in": 147.1,
+      "out": 166.75,
+      "speaker_en": "David Soria Parra",
+      "speaker_zh": "MCP 共同創造者",
+      "event": "Anthropic 官方訪談",
+      "date": "2025.12.11",
+      "highlight": [
+        "寫一次",
+        "MCP"
+      ],
+      "subs": [
+        {
+          "t": [
+            0.0,
+            3.56
+          ],
+          "en": "And so, what you do with the protocol is",
+          "zh": "所以這個協定做的事"
+        },
+        {
+          "t": [
+            3.56,
+            7.6
+          ],
+          "en": "allowing really like any type of application to connect to any type of integration",
+          "zh": "是讓任何應用程式，都能接上任何整合"
+        },
+        {
+          "t": [
+            7.6,
+            10.3
+          ],
+          "en": "and you only have to write the integration once",
+          "zh": "而且整合只要寫一次"
+        },
+        {
+          "t": [
+            10.3,
+            15.24
+          ],
+          "en": "instead of having to write the integration for every model provider over and over and over again,",
+          "zh": "不用為每一家模型供應商一再重寫"
+        },
+        {
+          "t": [
+            15.56,
+            17.56
+          ],
+          "en": "basically repeating the same task.",
+          "zh": "等於一直重複同一件事"
+        },
+        {
+          "t": [
+            17.7,
+            19.64
+          ],
+          "en": "And so that's really what MCP is trying to accomplish.",
+          "zh": "這就是 MCP 想做到的事"
+        }
+      ]
+    },
+    {
+      "type": "explainer",
+      "broll": [
+        "programmer coding",
+        "server rack lights"
+      ],
+      "lines": [
+        {
+          "en": "Anthropic open-sourced MCP in November 2024.",
+          "zh": "Anthropic 在 2024 年 11 月開源 MCP",
+          "card": {
+            "tag": "開放標準",
+            "text": "整合寫[[一次]]\n每個 App 都能用",
+            "cite": "來源：Linux 基金會新聞稿｜2025.12.09"
+          }
+        },
+        {
+          "en": [
+            "A year later,",
+            "more than ten thousand MCP servers had been published."
+          ],
+          "zh": [
+            "一年後",
+            "已經有超過 [[1 萬]]個 MCP 伺服器"
+          ],
+          "broll": [
+            "data center servers"
+          ],
+          "card": {
+            "tag": "採用",
+            "text": "超過 [[10,000]] 個\nMCP 伺服器",
+            "cite": "來源：Linux 基金會新聞稿｜2025.12.09"
+          }
+        },
+        {
+          "en": [
+            "Then in December 2025,",
+            "Anthropic donated it to the Linux Foundation's new Agentic AI Foundation."
+          ],
+          "zh": [
+            "2025 年 12 月",
+            "Anthropic 把它捐給 Linux 基金會的 Agentic AI Foundation"
+          ],
+          "card": {
+            "tag": "中立治理",
+            "text": "捐給\n[[Linux 基金會]]",
+            "cite": "來源：Anthropic 官方公告｜2025.12.09"
+          }
+        },
+        {
+          "en": [
+            "For a one-person company,",
+            "a tool you connect once can work with any AI app that supports MCP."
+          ],
+          "zh": [
+            "對一人公司來說",
+            "工具接一次，支援 MCP 的 AI App [[都能用]]"
+          ],
+          "broll": [
+            "person working laptop home office"
+          ],
+          "card": {
+            "tag": "一人公司",
+            "text": "工具接[[一次]]\n不用每家 AI 重做"
+          }
+        }
+      ]
+    },
+    {
+      "type": "outro",
+      "tag": "留言聊聊",
+      "question": "你第一個想接給\n[[AI agent]] 的工具是？",
+      "broll": [
+        "desk laptop night"
+      ],
+      "lines": [
+        {
+          "en": [
+            "Which tool would you connect to your AI agent first?",
+            "Tell me in the comments."
+          ],
+          "zh": [
+            "你第一個想接給 AI agent 的工具是什麼？",
+            "留言告訴我"
+          ]
+        }
+      ]
+    }
+  ],
+  "cover": {
+    "template": "B",
+    "ep": "TEST",
+    "kicker": "Anthropic 官方訪談",
+    "title": "AI 界的\n[[USB-C]]",
+    "subtitle": "MCP 共同創造者：整合只要寫一次",
+    "frame": {
+      "clip": 1,
+      "t": 4.0
+    }
+  }
+}

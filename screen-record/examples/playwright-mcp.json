@@ -1,0 +1,14 @@
+{
+  "url": "https://github.com/microsoft/playwright-mcp",
+  "out": "out/screen-record-test/test.mp4",
+  "steps": [
+    { "action": "chapter", "title": "Playwright MCP", "description": "github.com/microsoft/playwright-mcp", "ms": 2200 },
+    { "action": "wait", "ms": 800 },
+    { "action": "scroll", "by": 500, "ms": 2000 },
+    { "action": "scroll", "by": 500, "ms": 2000 },
+    { "action": "scroll", "role": "heading", "name": "Key Features", "ms": 2000 },
+    { "action": "highlight", "role": "heading", "name": "Key Features", "label": "Key Features", "ms": 2500 },
+    { "action": "scroll", "by": 450, "ms": 2500 },
+    { "action": "wait", "ms": 1200 }
+  ]
+}
