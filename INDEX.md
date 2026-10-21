@@ -31,20 +31,6 @@ Each workflow has exactly one first choice. House rules (every video must meet t
 
 Marked as not recommended (folders kept, nothing breaks): none. In this comparison, none of our existing skills was fully replaced by OpenMontage; the overlaps are all "don't use that OpenMontage pipeline", so they are marked "Do not use" in the table above.
 
-## Quick matrix: topics and agents
-
-| Skill | Best-fit topics | Agents |
-|---|---|---|
-| josh-video-router | All (routes only) | All six roles; load first |
-| interview-reel | Interview highlights; speaker-on-record AI news | Boss, 內容製作, 事實編輯, scout, analytics, coding agents |
-| stock-footage-reel | AI news, essays, pharma regulatory news, narrated one-person-company stories | Same |
-| screen-record | AI tool demos (public pages, footage only) | Same |
-| openmontage-house | Long-to-short, podcast, dubbing, screen tutorials, montage | Same |
-| opus-5-5-prompts (style reference) | Kinetic typography for interview quotes; dark typography for serious news; business motion explainer for one-person-company ops; data animation for numbers-heavy news | Scout and Boss pick, 內容製作 applies, analytics tags |
-
-Rule: every topic proposal includes a recommended style plus a one-line reason. Details in README.md and each SKILL.md.
-
-
 - huashu-art-motion｜35 art-style cards + 9 explainer video grammars, making knowledge videos with HTML animation plus TTS｜<YOUR_WORKSPACE>/tools/huashu-art-motion (symlinked under skills/)｜/huashu-art-motion｜Installed earlier; not reinstalled this time
 - vox-director｜Vox clipping-collage explainers / ads: one topic all the way through script, collage keyframes, motion, voiceover, music, subtitles｜vox-director/｜/vox-director, 「做一支 vox 風影片」｜Needs ATLASCLOUD_API_KEY (Atlas Cloud, paid)
 - hand-drawn-video-prompts｜Breaks a Chinese voiceover script into 9:16 hand-drawn crayon-style B-roll storyboards and Nano Banana / Flow prompts, and can continue into a full video｜hand-drawn-video-prompts/hand-drawn-video-prompts/｜/hand-drawn-video-prompts｜Prompt mode needs no key; a final video needs your own image / video generation tools (Google Flow, etc.)
@@ -71,3 +57,27 @@ Rule: every topic proposal includes a recommended style plus a one-line reason. 
 - screen-record｜Records public web page interactions with Playwright (scrolling, hovering, clicking links, highlights, chapter cards, animated cursor); one JSON spec produces a 1080x1920 mp4 + contact sheet, as tool / website walkthrough footage｜screen-record/ (record.mjs, contact_sheet.sh, examples/)｜/screen-record, 「錄一段網頁操作」「網站導覽素材」｜Approved by Josh 2026-10-11, public pages only: temporary in-memory browser, never connects to the box's logged-in browser, no cookies, no login, no form submission (the script blocks POST). Playwright 1.64.0 (this folder's node_modules), Playwright CLI 0.1.22 (playwright-cli), Chromium 1248, all Apache-2.0; no key needed. Posting workflow unchanged
 - interview-reel (first choice: celebrity interview / talk clips)｜Fox Hsiao-style interview Reels: commentary segments with voice by language (Chinese uses <YOUR_ELEVENLABS_VOICE_ID>, English uses Sarah Explains) + Traditional Chinese subtitles, intercut with 15 to 30 seconds of official original audio (16:9 centered, blurred fill, 「原聲 姓名｜場合｜日期」, 「影片／原頻道」), ending with a question to the audience; JSON spec → prep_clips.py (yt-dlp + faster-whisper medium transcription) → tts.py (OpenMontage elevenlabs_tts, per-line cache so credits aren't charged twice) → fetch_broll.py (Pexels) → build.py (rule checks, final video, 720p preview, contact sheet, credits.json, covers/render.py cover, default E large portrait)｜interview-reel/ (SKILL.md, scripts/, examples/mcp_test.spec.json)｜/interview-reel, 「名人訪談」「演講片段」「Fox 式」｜No new key needed (reuses ELEVENLABS_API_KEY, PEXELS_API_KEY). The example spec uses Anthropic's official MCP interview (the test video was deleted at Josh's request). Interview visuals are unlicensed and rely on fair use for commentary and quotation, a gray area
 - opus-5-5-prompts (reference list, not a skill)｜703 Claude Opus 5.5 code-rendered video prompts from yihui-dev/awesome-opus5-5-videos, each compared against this index: New 204 (Three.js 3D, shaders, interactive games), Partial overlap 375, Duplicate 124｜opus-5-5-prompts/catalog.md｜For 3D / shader / interactive game recordings, start with the "新" (New) section｜The source LICENSE is MIT, but prompts belong to their authors, so only links are included, no prompt text
+
+## Skill matrix: topics and agents
+
+Josh's topics: AI news, celebrity / founder interview highlights, one-person-company practice, AI tool demos, pharma regulatory angles. Roles: Grok Boss (router), 內容製作 (Content Producer), 事實編輯 (Fact Editor), 情報偵察員 (Scout), 數據復盤師 (Analytics), coding agents (Claude Code / Cursor). Per-role details are in each SKILL.md.
+
+| Skill | Best fit | Not for | Main users |
+|---|---|---|---|
+| josh-video-router | All topics (routes only) | Posting; skills outside its table | Everyone, loaded first |
+| interview-reel | Interview highlights; speaker-on-record AI news (official video only) | No official video; tool demos | Content Producer; Fact Editor checks sources and translation |
+| stock-footage-reel | AI news, essays, pharma regulatory news, narrated one-person-company stories | Interview highlights; animation; data cards | Content Producer; Fact Editor checks sources and licenses |
+| screen-record | AI tool demos (public pages, footage only) | Logged-in or private content | Content Producer; Fact Editor checks public-only |
+| openmontage-house | Long-to-short, podcast, dubbing, screen tutorials, montage, archival footage | Narrated Reels; animation; paid generation | Content Producer; Fact Editor checks asset licenses |
+| opus-5-5-prompts (style reference, not a skill) | Visual style ideas for code-rendered videos | Copying prompt text | Scout and Grok Boss pick; Analytics tags |
+
+### Style picks from opus-5-5-prompts
+
+- Interview quotes → [Kinetic Typography Speech Visualization](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/gdgtify-130294.md)
+- Serious news → [Dark Mode Kinetic Typography](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/noah-z-zhang-765393.md)
+- One-person-company operations → [Business Motion Explainer](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/wilzerjb-007630.md)
+- Numbers-heavy news → [Point Nemo Data Animation](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/haribuilds-007643.md)
+
+### Topic proposals: recommended-style rule
+
+Every topic proposal includes a recommended style plus a one-line reason (Josh's rule). A new style gets a 10-second sample for Josh before full production.

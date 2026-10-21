@@ -45,27 +45,9 @@ josh-video-skills/
     └── build_catalog.py
 ```
 
-## Skill matrix: topics and agents
+## Which skill for which topic
 
-Josh's topics: AI news, celebrity / founder interview highlights, one-person-company practice, AI tool demos, pharma regulatory angles. Agents: Grok Boss (routing), 內容製作 (content production), 事實編輯 (fact editor), 情報偵察員 (scout), 數據復盤師 (analytics), and coding agents (Claude Code / Cursor). Each SKILL.md has full "Best-fit topics" and "How agents use this skill" sections.
-
-| Skill | Best-fit topics | Not a fit | Agents that use it |
-|---|---|---|---|
-| josh-video-router | All topic types (it routes, it doesn't render) | Posting; picking skills outside its table | All: Boss routes, 內容製作 follows, 事實編輯 uses Step 2 as checklist, scout suggests, analytics tags, coding agents load it first |
-| interview-reel | Celebrity / founder interview highlights; AI news told by a speaker on record (official video only) | No official video; tool demos; mostly-original-audio videos | Boss, 內容製作, 事實編輯 (source + translation check), scout, analytics, coding agents |
-| stock-footage-reel | AI news and essay summaries; pharma regulatory angles as news; narrated one-person-company stories | Interview highlights; explainer animation; numbers-heavy data cards | Boss, 內容製作, 事實編輯 (source + license check), scout, analytics, coding agents |
-| screen-record | AI tool demos; public pages shown inside news or one-person-company videos (footage only) | Logged-in pages; private or paywalled content; finished videos on its own | Boss, 內容製作, 事實編輯 (public-page check), scout, analytics, coding agents |
-| openmontage-house | Long video / podcast into shorts; translated dubbing; screen tutorials; reference-Reel analysis; narration-free montage; extra archival footage | Narrated real-footage Reels; explainer animation; interview commentary; paid generation | Boss, 內容製作, 事實編輯 (asset license check), scout, analytics, coding agents |
-| opus-5-5-prompts (style reference, not a skill) | Visual style ideas for code-rendered videos | Copying prompt text (links only) | Scout and Boss pick a style; 內容製作 rewrites the prompt in its own words; analytics tags the style |
-
-### Style picks from opus-5-5-prompts
-
-- Interview quotes → kinetic typography: [Kinetic Typography Speech Visualization](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/gdgtify-130294.md)
-- Serious news → dark typography: [Dark Mode Kinetic Typography](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/noah-z-zhang-765393.md)
-- One-person-company operations → business motion explainer: [Business Motion Explainer](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/wilzerjb-007630.md)
-- Numbers-heavy news → data animation: [Point Nemo Data Animation](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/haribuilds-007643.md)
-
-**Josh's rule:** every topic proposal includes a recommended style plus a one-line reason. A new style gets a 10-second sample for Josh before full production.
+The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the recommended-style rule for topic proposals live in [INDEX.md](INDEX.md#skill-matrix-topics-and-agents).
 
 ## Installation
 

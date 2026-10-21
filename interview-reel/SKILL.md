@@ -105,17 +105,13 @@ bash -lc "source <SKILLS_DIR>/OpenMontage/om-env.sh >/dev/null; cd $S; python pr
 - No GPU: a 1-minute video takes about 2 minutes to render; a 3-minute video about 6 to 8 minutes.
 - Pexels keyword results are sometimes off; check the contact sheet, then change keywords or use `image` / `file`.
 
-## Best-fit topics
+## Best fit and agent usage
 
-- **Best fit**: celebrity / founder interview highlights and conference talks where an official public video exists (company channels, event organizers, a podcast's own channel), e.g. an AI founder explaining a product or a strategy. Commentary leads; 15 to 30 second original-audio clips back it up.
-- **Good fit**: AI news when the news is a person speaking on record (a keynote, an official interview); one-person-company practice told through a founder's own words; pharma regulatory angles only when an official public video of the speaker (e.g. an agency's own channel) exists.
-- **Not a fit**: news with no official video of the speaker; reposted or watermarked clips; AI tool demos (use screen-record); videos that are mostly original audio (over 50% is blocked); anything implying the speaker endorses Josh.
+**Best fit:** celebrity / founder interview highlights and talks with an official public video; speaker-on-record AI news. **Not for:** no official video, reposts, tool demos, or mostly-original-audio cuts (over 50% is blocked).
 
-## How agents use this skill
-
-- **Grok Boss (routing)**: Route here when the topic has official interview or talk footage (decision table row 1).
-- **內容製作 (content production: script plus video)**: Write the JSON spec (hook, explainer, clip, outro segments), run prep_clips.py → tts.py → fetch_broll.py → build.py (or run.sh), and deliver the video, 720p preview, contact sheet, credits.json, and covers.
-- **事實編輯 (fact editor: review)**: Check that each clip comes from an official channel, the Chinese translation is faithful to the speaker, numbers in explainer cards trace to the `cite` source, the original-audio share is under 50%, and nothing implies endorsement.
-- **情報偵察員 (scout)**: Suggest interview-reel when a topic centers on an official interview or talk, and name the source video and channel. Every topic proposal includes a recommended style plus a one-line reason (Josh's rule).
-- **數據復盤師 (analytics)**: Tag the video as interview-reel and record the original-audio share and clip count from build.py, to compare against other formats.
-- **Generic coding agent (Claude Code / Cursor)**: Load `interview-reel/SKILL.md`; scripts are in `scripts/` and need the OpenMontage venv (`source <SKILLS_DIR>/OpenMontage/om-env.sh`). Input: a spec.json like `examples/mcp_test.spec.json`. Output: `<name>.mp4`, `preview_720p.mp4`, `contact_sheet.jpg`, `credits.json`, `timeline.json`, `cover_reel.png` / `cover_post.png`. Run `build.py --check` before rendering. It never posts.
+- **Grok Boss**: routes here only when official interview footage exists.
+- **內容製作 (Content Producer)**: writes the spec, translates the clip subs, runs prep_clips → tts → fetch_broll → build.
+- **事實編輯 (Fact Editor)**: checks official channel, translation faithfulness, `cite` sources, and no implied endorsement.
+- **情報偵察員 (Scout)**: names the official source video and channel when proposing the topic.
+- **數據復盤師 (Analytics)**: records the original-audio share and clip count from build.py next to the results.
+- **Coding agent (Claude Code / Cursor)**: input: spec.json (see examples/); output: mp4, 720p preview, contact sheet, credits.json, covers. Run `build.py --check` first.
