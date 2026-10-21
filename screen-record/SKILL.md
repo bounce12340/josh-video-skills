@@ -79,3 +79,18 @@ Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflecte
 - House rules still apply: vertical 1080x1920, Sarah Explains voiceover, Traditional Chinese main subtitles + small English line, B clipping-style Vox cover, IG final under 45 MB.
 - Add an entry to credits.json: `{"source":"screen-record","credit":"Screen recording of <site>","url":"<網址>","recorded":"YYYY-MM-DD"}`; the end credit reads "Screen recording of <site>".
 - When recording someone else's site: use it only as introduction / commentary footage; do not record personal data, other people's private messages, or paywalled content.
+
+## Best-fit topics
+
+- **Best fit**: AI tool demos and website walkthroughs of public pages (a GitHub repo, a product landing page, docs), recorded as footage.
+- **Good fit**: supporting shots inside AI news (showing the public report or announcement page) and one-person-company practice (showing a public tool or site being used).
+- **Not a fit**: anything behind a login, typing, or form submission (blocked by design); private messages, personal data, or paywalled content; finished videos on its own (it outputs footage that goes into stock-footage-reel or OpenMontage).
+
+## How agents use this skill
+
+- **Grok Boss (routing)**: Route here when a video needs real footage of a public web page or tool (decision table row 4), then on to stock-footage-reel or OpenMontage screen-demo.
+- **內容製作 (content production: script plus video)**: Write a spec.json (url, steps such as scroll, highlight, click, chapter), run `node record.mjs spec.json`, check the contact sheet, and add the clip to shots.json via `pick` file plus a credits.json entry.
+- **事實編輯 (fact editor: review)**: Check that only public pages were recorded, no personal data or paywalled content appears, and the end credit reads "Screen recording of <site>".
+- **情報偵察員 (scout)**: Suggest screen-record when a topic is about a tool or site that can be shown on a public page. Every topic proposal includes a recommended style plus a one-line reason (Josh's rule).
+- **數據復盤師 (analytics)**: Tag videos that contain screen-record footage, to compare demo-style videos against others.
+- **Generic coding agent (Claude Code / Cursor)**: Load `screen-record/SKILL.md`; run `npm install` in the folder first. Input: spec.json (see `examples/playwright-mcp.json`). Output: a 1080x1920 mp4, plus a contact sheet via `./contact_sheet.sh`. Do not modify record.mjs to bypass its guards. It never logs in or posts.

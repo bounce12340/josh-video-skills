@@ -31,6 +31,19 @@ Each workflow has exactly one first choice. House rules (every video must meet t
 
 Marked as not recommended (folders kept, nothing breaks): none. In this comparison, none of our existing skills was fully replaced by OpenMontage; the overlaps are all "don't use that OpenMontage pipeline", so they are marked "Do not use" in the table above.
 
+## Quick matrix: topics and agents
+
+| Skill | Best-fit topics | Agents |
+|---|---|---|
+| josh-video-router | All (routes only) | All six roles; load first |
+| interview-reel | Interview highlights; speaker-on-record AI news | Boss, 內容製作, 事實編輯, scout, analytics, coding agents |
+| stock-footage-reel | AI news, essays, pharma regulatory news, narrated one-person-company stories | Same |
+| screen-record | AI tool demos (public pages, footage only) | Same |
+| openmontage-house | Long-to-short, podcast, dubbing, screen tutorials, montage | Same |
+| opus-5-5-prompts (style reference) | Kinetic typography for interview quotes; dark typography for serious news; business motion explainer for one-person-company ops; data animation for numbers-heavy news | Scout and Boss pick, 內容製作 applies, analytics tags |
+
+Rule: every topic proposal includes a recommended style plus a one-line reason. Details in README.md and each SKILL.md.
+
 
 - huashu-art-motion｜35 art-style cards + 9 explainer video grammars, making knowledge videos with HTML animation plus TTS｜<YOUR_WORKSPACE>/tools/huashu-art-motion (symlinked under skills/)｜/huashu-art-motion｜Installed earlier; not reinstalled this time
 - vox-director｜Vox clipping-collage explainers / ads: one topic all the way through script, collage keyframes, motion, voiceover, music, subtitles｜vox-director/｜/vox-director, 「做一支 vox 風影片」｜Needs ATLASCLOUD_API_KEY (Atlas Cloud, paid)

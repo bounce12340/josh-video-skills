@@ -119,3 +119,18 @@ Visual spec (matched to AYi's original videos):
 - archive.org is occasionally very slow or returns empty; the script retries three times; on failure that shot falls back to synth; check the `note:` messages and re-fetch.
 - Prelinger films are mostly 4:3, 480p, so cropping to vertical enlarges them a lot, masked with soft focus and grain; prefer segments with simple composition and the subject centered.
 - This machine has no GPU: a 30-second video takes about 1 minute to render; a 3-minute video about 5 to 8 minutes.
+
+## Best-fit topics
+
+- **Best fit**: AI news and essay summaries told with voiceover over real footage (the AYi documentary style), e.g. a CEO's long essay or a company report; pharma regulatory angles told as news, with archival film for "history / control / oversight" lines.
+- **Good fit**: one-person-company practice told as a narrated story; AI tool demos when combined with screen-record clips via `pick` file.
+- **Not a fit**: interview highlights built on a speaker's own audio (use interview-reel); explainer animation or art styles (huashu-art-motion); numbers-heavy comparisons that need animated data cards (huashu data_card_render.py); topics where no commercially licensed footage matches the lines.
+
+## How agents use this skill
+
+- **Grok Boss (routing)**: Route here for voiceover + real news / stock footage (decision table row 2).
+- **內容製作 (content production: script plus video)**: Write script.txt (one line per shot), generate the voiceover, align with align.py, write shots.json, fetch footage, and build with build.py (`--plan` first).
+- **事實編輯 (fact editor: review)**: Check every line against the original source (no invented numbers or quotes), English subtitles are translations and not quoted, and every clip in credits.json has a URL and a commercial license (CC BY credited in the caption).
+- **情報偵察員 (scout)**: Suggest stock-footage-reel for narrated news topics, with a note on whether archival film fits the angle. Every topic proposal includes a recommended style plus a one-line reason (Josh's rule).
+- **數據復盤師 (analytics)**: Tag the video as stock-footage-reel and note archival vs. modern footage share, to compare performance by style.
+- **Generic coding agent (Claude Code / Cursor)**: Load `stock-footage-reel/SKILL.md`; scripts are in `scripts/`. Input: script.txt, vo.mp3, shots.json (see `examples/satya_test.shots.json`). Output: `reel.mp4`, `contact_sheet.jpg`, `credits.json`, `cover_reel.png`, `cover_post.png`. Voiceover is generated through the ElevenLabs MCP, not by the scripts. It never posts.

@@ -47,3 +47,23 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 ## Step 4: Hand off to the fact editor
 - Notify the fact editor (事實編輯) to review `03-drafts/<題目>/`; the report goes in `04-review/<稿名>-review.md`.
 - Once it passes, report to the main bot: file path, duration, file size, the full script, and any facts that could not be verified.
+
+## Best-fit topics
+
+This skill does not render video; it picks the skill. It fits every topic type Josh covers, because its job is to route:
+- AI news → stock-footage-reel (voiceover + real footage), or huashu-art-motion for explainer animation.
+- Celebrity / founder interview highlights → interview-reel.
+- One-person-company practice → huashu-art-motion (explainer, whiteboard, hand-drawn) or stock-footage-reel; data-card template for numbers.
+- AI tool demos → screen-record (footage) feeding stock-footage-reel or OpenMontage screen-demo.
+- Pharma regulatory angles → stock-footage-reel (news-style voiceover); data cards for figures.
+
+Not a fit: posting, scheduling, or picking a skill outside its decision table. When no row matches, it stops and asks the main bot.
+
+## How agents use this skill
+
+- **Grok Boss (routing)**: Load this first whenever Josh asks for a video; use the Step 1 decision table to name the target skill in the brief to 內容製作.
+- **內容製作 (content production: script plus video)**: Read Steps 0 to 3, follow the chosen skill, apply the shared house rules, and deliver the files listed in Step 3 to `03-drafts/<題目>/`.
+- **事實編輯 (fact editor: review)**: Use Step 2 as the review checklist (Taiwan wording, 「」, no em-dashes, voiceover matches subtitles, no logos, source link and credit for YouTube-based videos) and write the report to `04-review/<稿名>-review.md` (Step 4).
+- **情報偵察員 (scout)**: Use the decision table to suggest the skill and style when proposing a topic. Every topic proposal includes a recommended style plus a one-line reason (Josh's rule).
+- **數據復盤師 (analytics)**: Tag each published video with the skill chosen in Step 1 (and the style), so performance can be compared by skill and style.
+- **Generic coding agent (Claude Code / Cursor)**: Load `josh-video-router/SKILL.md` (e.g. copy it to `~/.claude/skills/`). Input: a topic plus source material. Output: the name of the skill to run, then the Step 3 deliverables (script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md) in `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`. It never posts.

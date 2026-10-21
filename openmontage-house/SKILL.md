@@ -56,3 +56,18 @@ Available sources: pexels (has key), archive_org, wikimedia, nasa, nara, loc, co
 
 ## License (AGPLv3)
 Using OpenMontage as a tool to make videos, including for commercial posts, is fine, and the output videos are not bound by the AGPL. Only "modifying its code and running it as a network service for others" requires releasing source code. So do not run a modified OpenMontage as a public-facing service.
+
+## Best-fit topics
+
+- **Best fit**: cutting a long interview, livestream, or podcast into shorts (clip-factory); podcast to video (podcast-repurpose); translated dubbing of an existing video (localization-dub); real screen-recording tutorials for AI tool demos (screen-demo); "make it like this reference Reel" structure analysis.
+- **Good fit**: narration-free themed montages (documentary-montage); fetching extra archival / public-domain footage for stock-footage-reel with om_clips.py, e.g. for history angles in AI news or pharma regulatory topics.
+- **Not a fit**: narrated real-footage Reels (use stock-footage-reel); Vox / explainer animation (use huashu-art-motion); celebrity interview highlights with commentary (use interview-reel); anything needing paid generation keys (none are set).
+
+## How agents use this skill
+
+- **Grok Boss (routing)**: Route here for long-to-short, translated dubbing, podcast, or narration-free montage (decision table rows 3 and 8).
+- **內容製作 (content production: script plus video)**: Start the pipeline from `skills/pipelines/<流程>/executive-producer.md`, paste the house rules as the first message, generate the voiceover with Sarah Explains, and put finished files in `03-drafts/<題目>/`.
+- **事實編輯 (fact editor: review)**: Check every asset in credits.json (Archive.org verified per item, no BBC / TV / studio footage), faithfulness to the source, and that the rights to any downloaded video were confirmed.
+- **情報偵察員 (scout)**: Suggest OpenMontage pipelines when a topic starts from a long video, a podcast, or a reference Reel. Every topic proposal includes a recommended style plus a one-line reason (Josh's rule).
+- **數據復盤師 (analytics)**: Tag which OpenMontage pipeline was used, to compare performance with house-format videos.
+- **Generic coding agent (Claude Code / Cursor)**: Load `openmontage-house/SKILL.md`, then `source <SKILLS_DIR>/OpenMontage/om-env.sh`. Input: source video / audio or a topic, plus the house rules. Output: a 9:16 mp4 under 45 MB in `03-drafts/<題目>/`. For extra footage, run `scripts/om_clips.py` (prints `pick` entries and writes `om_credits.json`). It never posts.
