@@ -67,3 +67,5 @@ Using OpenMontage as a tool to make videos, including for commercial posts, is f
 - **情報偵察員 (Scout)**: proposes it when a topic starts from a long video, podcast, or reference Reel.
 - **數據復盤師 (Analytics)**: tags which OpenMontage pipeline was used.
 - **Coding agent (Claude Code / Cursor)**: `source OpenMontage/om-env.sh`; input: source media + house rules; output: 9:16 mp4 under 45 MB; `om_clips.py` prints `pick` entries.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

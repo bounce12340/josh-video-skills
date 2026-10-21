@@ -62,6 +62,8 @@ Marked as not recommended (folders kept, nothing breaks): none. In this comparis
 
 ## Skill matrix: topics and agents
 
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](AGENT-PLAYBOOK.md).
+
 Josh's topics: AI news, celebrity / founder interview highlights, one-person-company practice, AI tool demos, pharma regulatory angles. Roles: Grok Boss (router), 內容製作 (Content Producer), 事實編輯 (Fact Editor), 情報偵察員 (Scout), 數據復盤師 (Analytics), coding agents (Claude Code / Cursor). Per-role details are in each SKILL.md.
 
 | Skill | Best fit | Not for | Main users |

@@ -20,6 +20,7 @@ josh-video-skills/
 ├── README.md
 ├── LICENSE                  # MIT, covers only files written for this repo
 ├── INDEX.md                 # Index and decision table of all video skills (including third-party)
+├── AGENT-PLAYBOOK.md        # How agents run the skills: preflight, gates, costs, failures, done
 ├── ROUTER-PLAN.md           # Integration plan: inventory, keep / retire, rule conflicts
 ├── josh-video-router/       # Main entry point (router)
 │   └── SKILL.md
@@ -54,6 +55,8 @@ josh-video-skills/
 ```
 
 ## Which skill for which topic
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](AGENT-PLAYBOOK.md).
 
 The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the recommended-style rule for topic proposals live in [INDEX.md](INDEX.md#skill-matrix-topics-and-agents).
 

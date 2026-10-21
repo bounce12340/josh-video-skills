@@ -130,3 +130,5 @@ Visual spec (matched to AYi's original videos):
 - **情報偵察員 (Scout)**: flags whether archival film suits the angle.
 - **數據復盤師 (Analytics)**: compares archival-heavy vs modern-footage videos.
 - **Coding agent (Claude Code / Cursor)**: input: script.txt, vo.mp3, shots.json; output: reel.mp4, contact sheet, credits.json, covers.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

@@ -64,3 +64,5 @@ If it is missing: fall back to stock-footage-reel when the topic fits it (narrat
 - **情報偵察員 (Scout)**: uses the decision table to attach a skill and style to each topic proposal (rule: [INDEX.md](../INDEX.md#topic-proposals-recommended-style-rule)).
 - **數據復盤師 (Analytics)**: tags each published video with the skill chosen in Step 1.
 - **Coding agent (Claude Code / Cursor)**: input: topic + sources; output: the chosen skill name, then the Step 3 deliverables. Never posts.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

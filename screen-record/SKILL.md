@@ -90,3 +90,5 @@ Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflecte
 - **情報偵察員 (Scout)**: notes the public URL that can be shown.
 - **數據復盤師 (Analytics)**: tags videos that contain demo footage.
 - **Coding agent (Claude Code / Cursor)**: `npm install`, then input: spec.json; output: 1080x1920 mp4 + contact sheet. Never logs in or posts.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

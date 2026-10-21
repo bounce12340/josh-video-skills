@@ -42,3 +42,5 @@ Classification is keyword-based and will misfire; the Scout reviews each hit bef
 - **Grok Boss**: receives proposals and confirms the skill via the router.
 - **數據復盤師 (Analytics)**: can reuse the suggested style as the initial tag in `analytics/style_tags.csv`.
 - **Coding agent (Claude Code / Cursor)**: input: topics.json + `X_BEARER_TOKEN` env var (or `--input` file); output: printed suggestions and an optional hits.json.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

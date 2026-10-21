@@ -115,3 +115,5 @@ bash -lc "source <SKILLS_DIR>/OpenMontage/om-env.sh >/dev/null; cd $S; python pr
 - **情報偵察員 (Scout)**: names the official source video and channel when proposing the topic.
 - **數據復盤師 (Analytics)**: records the original-audio share and clip count from build.py next to the results.
 - **Coding agent (Claude Code / Cursor)**: input: spec.json (see examples/); output: mp4, 720p preview, contact sheet, credits.json, covers. Run `build.py --check` first.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).
