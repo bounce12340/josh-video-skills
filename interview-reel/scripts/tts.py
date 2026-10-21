@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 2 步：旁白配音。ElevenLabs Sarah Explains（Nhs7eitvQWFTQBsf0yiT），用 OpenMontage 的 elevenlabs_tts 工具，一行一個檔。
+"""第 2 步：旁白配音。ElevenLabs 英文聲音（voice_id 讀 ELEVENLABS_VOICE_ID_EN，或 spec 的 voice.voice_id；Josh 本人聲音見 README），用 OpenMontage 的 elevenlabs_tts 工具，一行一個檔。
 同一句文字＋同一個聲音只會送一次（以文字雜湊快取在 cache/tts/），改稿只會重配改到的那幾行，不會重複扣點。
 
 用法（先 source OpenMontage/om-env.sh，ELEVENLABS_API_KEY 由機器環境變數提供，不要印出來）：
@@ -9,7 +9,7 @@
 import argparse, shutil, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from ir_common import CACHE, VOICE_ID, VOICE_MODEL, load_json, save_json, sha, narr_lines, probe_duration  # noqa
+from ir_common import CACHE, VOICE_ID, VOICE_NAME, VOICE_MODEL, load_json, save_json, sha, narr_lines, probe_duration  # noqa
 
 import os  # noqa: E402
 OM = Path(os.environ.get("OPENMONTAGE_DIR", Path(__file__).resolve().parents[2] / "OpenMontage"))
@@ -23,6 +23,8 @@ def main():
     spec = load_json(a.spec); work = Path(a.work); (work / "tts").mkdir(parents=True, exist_ok=True)
     v = spec.get("voice", {})
     voice_id = v.get("voice_id", VOICE_ID); model = v.get("model", VOICE_MODEL)
+    if not voice_id:
+        raise SystemExit("no voice_id: set ELEVENLABS_VOICE_ID_EN (English voice) or voice.voice_id in the spec")
     settings = {k: v[k] for k in ("stability", "similarity_boost", "style", "speed") if k in v}
     todo, manifest = [], []
     for si, seg in enumerate(spec["segments"]):
@@ -58,7 +60,7 @@ def main():
             print("  voiced:", t[:70])
     for m in manifest:
         m["dur"] = round(probe_duration(m["path"]), 3)
-    save_json(work / "tts" / "manifest.json", {"voice": {"provider": "ElevenLabs", "voice": f"Sarah Explains ({voice_id})",
+    save_json(work / "tts" / "manifest.json", {"voice": {"provider": "ElevenLabs", "voice": f"{v.get('voice_name', VOICE_NAME)} ({voice_id})",
                                                           "model": model}, "lines": manifest})
     print("total narration", round(sum(m["dur"] for m in manifest), 1), "s")
 

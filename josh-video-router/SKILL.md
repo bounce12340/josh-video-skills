@@ -34,7 +34,7 @@ If it is missing: fall back to stock-footage-reel when the topic fits it (narrat
 
 ## Step 2: Shared house rules (every video must meet them)
 - Traditional Chinese with Taiwan wording; use 「」 quotes; no em-dashes (—).
-- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Sarah Explains. Natural pace, no speed-up. Check credits with estimate_only first.
+- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`), model eleven_multilingual_v2, about 1,800 characters of credit per video, `generations_count: 1`. Natural pace, no speed-up. Check credits with estimate_only first.
 - The voiceover reads the subtitles exactly: the final subtitle file is the single source, and on-screen subtitles are chunked from that same file.
 - News videos report only the news, with no first-person opinion from Josh unless he asks for it.
 - BGM: include it whenever possible; if used, note the track name, source, and license in facts.md; lacking it does not block the video.

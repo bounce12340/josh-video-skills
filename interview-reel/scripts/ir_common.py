@@ -25,7 +25,8 @@ L = dict(brand_y=214, title_y=252, title_size=44,
          sub_bottom=1490, zh_size=60, en_size=32, text_w=900, margin=72,
          outro_top=600, credit_y=1508)
 
-VOICE_ID = "Nhs7eitvQWFTQBsf0yiT"   # Sarah Explains
+VOICE_ID = os.environ.get("ELEVENLABS_VOICE_ID_EN", "")   # English voice; Josh: "Josh - Calm, Warm Taiwanese narrator" (see README)
+VOICE_NAME = os.environ.get("ELEVENLABS_VOICE_NAME_EN", "Josh - Calm, Warm Taiwanese narrator")
 VOICE_MODEL = "eleven_multilingual_v2"
 
 

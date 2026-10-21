@@ -25,8 +25,8 @@ python -c "from tools.tool_registry import registry; import json; registry.disco
 
 ## House rules (override OpenMontage defaults; every video must meet them)
 1. Frame: vertical 1080x1920 (most OpenMontage defaults are 16:9, so specify 9:16 at the start). Under 3 minutes; completeness over brevity.
-2. Voiceover: ElevenLabs English female voice **Sarah Explains** (voice_id `Nhs7eitvQWFTQBsf0yiT`), model `eleven_multilingual_v2`.
-   - First choice: generate directly with OpenMontage's own `elevenlabs_tts` tool (tested and working). Specify `voice_id`; do not let tts_selector pick a voice automatically or fall back to piper. Example: `ElevenLabsTTS().execute({"text":..., "voice_id":"Nhs7eitvQWFTQBsf0yiT", "model_id":"eleven_multilingual_v2", "output_path":".../vo.mp3"})`. Send each script once; do not resend (it charges credits again).
+2. Voiceover: Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`), model `eleven_multilingual_v2`, about 1,800 characters of credit per video.
+   - First choice: generate directly with OpenMontage's own `elevenlabs_tts` tool (tested and working). Specify `voice_id`; do not let tts_selector pick a voice automatically or fall back to piper. Example: `ElevenLabsTTS().execute({"text":..., "voice_id":"xBHPgy3hJ2fclZQIoDnv", "model_id":"eleven_multilingual_v2", "output_path":".../vo.mp3"})`. Send each script once; do not resend (it charges credits again).
    - Fallback: if the direct API fails, generate vo.mp3 with the user-Elevenlabs connector (`creative_generate_speech`, `generations_count: 1`), then hand it to OpenMontage as ready-made narration. Do not use piper for final voiceover.
 3. Subtitles: Traditional Chinese main subtitles + one smaller English line below (the English matches the voiceover). Taiwan wording, 「」 quotes, no em-dashes. The subtitle bottom edge stays no lower than y=1490 to avoid the IG interface.
 4. Cover: B clipping-style Vox layout, `<YOUR_WORKSPACE>/media-team/00-profile/covers/render.py` (do not use OpenMontage's own covers / thumbnails).

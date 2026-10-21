@@ -99,10 +99,11 @@ Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, `COVERS
 | `NODE_BIN_DIR` | Node bin folder, when you need a specific Node version |
 | `COVERS_DIR` | Folder with the cover `render.py` and `fonts/` (Noto Sans TC / Noto Serif TC) |
 | `BRAND_NAME`, `BRAND_HANDLE` | Brand mark text on the video and the end-card handle |
+| `ELEVENLABS_VOICE_ID_EN` | English voiceover voice_id for interview-reel's tts.py (Josh: `xBHPgy3hJ2fclZQIoDnv`) |
 | `SFR_USER_AGENT`, `SFR_CACHE` | stock-footage-reel's User-Agent and cache location |
 | `X_BEARER_TOKEN` | Read-only X API token for x-scout and optional analytics pulls. Environment variable only; never commit it |
 
-English voiceover defaults to Sarah Explains from the ElevenLabs public voice library (`Nhs7eitvQWFTQBsf0yiT`); change it with `voice_id` in the spec.
+English voiceover (since 2026-10-20) uses Josh's own ElevenLabs voice "Josh - Calm, Warm Taiwanese narrator" (voice_id `xBHPgy3hJ2fclZQIoDnv`, model `eleven_multilingual_v2`; Josh confirmed it is his voice and approved its use). Scripts read it from the `ELEVENLABS_VOICE_ID_EN` environment variable (no voice_id is hard-coded); a spec's `voice_id` overrides it. Budget about 1,800 characters of credit per video and always use `generations_count: 1`. If you fork this repo, use your own voice.
 
 A few files live in the author's own workspace and are **not included in this repo**; prepare your own or drop the related steps: the cover generator `covers/render.py` and fonts, the voice file `voice.md`, the motion rules `motion-contract.md`, and the wrap-up script `video-pipeline/reel.sh`.
 

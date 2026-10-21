@@ -2,7 +2,6 @@
   "title": "MCP 共同創造者：[[整合只要寫一次]]",
   "voice": {
     "provider": "ElevenLabs",
-    "voice_id": "Nhs7eitvQWFTQBsf0yiT",
     "model": "eleven_multilingual_v2"
   },
   "music": "synth",

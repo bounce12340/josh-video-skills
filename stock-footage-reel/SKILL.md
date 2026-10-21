@@ -7,7 +7,7 @@ description: "Vertical 「真實素材剪輯」 (real-footage edit) short video 
 
 > **2026-10-11 merge note:** for real-footage Reels with voiceover, this skill is still the first choice (canonical). OpenMontage's documentary-montage is only for montages with no or little narration; see the decision table in `<SKILLS_DIR>/INDEX.md` for the split.
 > - For more footage sources (NASA, Library of Congress LOC, NARA, Archive.org, Wikimedia): use `python3 <SKILLS_DIR>/openmontage-house/scripts/om_clips.py --query "..." --out $D/work/om_clips`; it prints a `pick: {"source":"file",...}` you can paste straight into shots.json. Confirm each license before adding it to credits.json.
-> - Current voiceover settings: Chinese uses your own ElevenLabs voice **「<YOUR_VOICE_NAME>」** (`<YOUR_ELEVENLABS_VOICE_ID>`); English uses **Sarah Explains** (`Nhs7eitvQWFTQBsf0yiT`). Traditional Chinese main subtitles + small English line. For how English voiceover is done, see EP.07: `<YOUR_WORKSPACE>/media-team/03-drafts/grokbot-team-reel/` (script_en.txt; work/shots.json uses `subs_zh` + `en`; timing and editing use mktiming.py and build_custom.py in work/). Step 2 below picks the voice by language.
+> - Current voiceover settings: Chinese uses your own ElevenLabs voice **「<YOUR_VOICE_NAME>」** (`<YOUR_ELEVENLABS_VOICE_ID>`); English uses Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`), about 1,800 characters of credit per video. Traditional Chinese main subtitles + small English line. For how English voiceover is done, see EP.07: `<YOUR_WORKSPACE>/media-team/03-drafts/grokbot-team-reel/` (script_en.txt; work/shots.json uses `subs_zh` + `en`; timing and editing use mktiming.py and build_custom.py in work/). Step 2 below picks the voice by language.
 
 For the content team of Josh (IG / Threads @bounce12340; AI startups, AI agents, one-person companies; Taiwan). Following this workflow, both Claude Code and the content-production bot can produce videos directly. **This skill produces drafts only, never posts.** Posting always goes to the main bot and happens only after Josh confirms.
 
@@ -40,7 +40,7 @@ D=<YOUR_WORKSPACE>/media-team/03-drafts/<題目>-reel ; mkdir -p $D/work ; cd $D
 One voiceover sentence per line; the `[1] 文字` format is allowed. Each line works best with 1 to 3 clauses, about 5 to 9 seconds.
 
 ### 2. Voiceover (ElevenLabs via MCP; scripts cannot call MCP directly)
-1. Pick the voice by language: Chinese uses **「<YOUR_VOICE_NAME>」**, voice_id `<YOUR_ELEVENLABS_VOICE_ID>`; English uses **Sarah Explains**, voice_id `Nhs7eitvQWFTQBsf0yiT`. Check the name with `user-Elevenlabs`'s `creative_list_voices` before sending; don't swap ids from memory.
+1. Pick the voice by language: Chinese uses **「<YOUR_VOICE_NAME>」**, voice_id `<YOUR_ELEVENLABS_VOICE_ID>`; English uses **Josh - Calm, Warm Taiwanese narrator**, voice_id `xBHPgy3hJ2fclZQIoDnv` (Josh's own voice, approved). Check the name with `user-Elevenlabs`'s `creative_list_voices` before sending; don't swap ids from memory.
 2. `creative_generate_speech`: `voice_id`, `model_id: "eleven_multilingual_v2"`, `generations_count: 1` (the default is 4, which costs 4x credits), `prompt` holds the whole script (a blank line between lines for natural pauses; no `[1]` numbers). Don't resend the same request; it charges credits again.
 3. Poll `creative_get_flow_run_status` (flow_id, session_ids) until `all_completed`, take `media[0].url`, then `curl -o vo.mp3 '<url>'` (the URL is valid for 2 hours).
 4. The text sent must match script.txt exactly (timing depends on it).
@@ -59,7 +59,7 @@ It prints each shot's start/end and the alignment rate (80% or higher is normal)
   "title_zh": "微軟執行長 Satya Nadella 長文",   // 左上固定標題（來源）
   "title_en": "Satya Nadella · \"Models as Insider Risks in the Super Intelligence Era\"",
   "max_cut": 4.5,                              // 一鏡超過幾秒就在同一支素材裡多切一段
-  "voice": {"provider": "ElevenLabs", "voice": "<YOUR_VOICE_NAME> (<YOUR_ELEVENLABS_VOICE_ID>)", "model": "eleven_multilingual_v2"},  // 中文；英文片改 Sarah Explains (Nhs7eitvQWFTQBsf0yiT)
+  "voice": {"provider": "ElevenLabs", "voice": "<YOUR_VOICE_NAME> (<YOUR_ELEVENLABS_VOICE_ID>)", "model": "eleven_multilingual_v2"},  // 中文；英文片改 Josh - Calm, Warm Taiwanese narrator (xBHPgy3hJ2fclZQIoDnv)
   "music": "synth",                            // "synth"＝自己合成的暗色配樂；或音檔路徑；或 "none"
   "music_db": -17,
   "shots": [

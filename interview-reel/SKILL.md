@@ -1,6 +1,6 @@
 ---
 name: interview-reel
-description: "Vertical Reel of 「名人訪談／演講片段」 (celebrity interview / talk clips), Fox Hsiao style \"commentary intercut with original audio\": commentary segments with voiceover chosen by language (Chinese uses 「<YOUR_VOICE_NAME>」 <YOUR_ELEVENLABS_VOICE_ID>; English uses Sarah Explains) + Traditional Chinese main subtitles, intercut with 15 to 30 second clips of the celebrity's original audio (16:9 centered, blurred fill above and below, a 「原聲 姓名｜場合｜日期」 source label, 「影片／原頻道」 at top left), ending with a question to the audience. One JSON spec goes all the way to the final video, a 720p preview, a contact sheet, credits.json, and covers. Triggers: 「名人訪談」, 「演講片段」, 「訪談 Reel」, 「Fox 式」, 「解說加原聲」, \"interview reel\"."
+description: "Vertical Reel of 「名人訪談／演講片段」 (celebrity interview / talk clips), Fox Hsiao style \"commentary intercut with original audio\": commentary segments with voiceover chosen by language (Chinese uses 「<YOUR_VOICE_NAME>」 <YOUR_ELEVENLABS_VOICE_ID>; English uses Josh - Calm, Warm Taiwanese narrator) + Traditional Chinese main subtitles, intercut with 15 to 30 second clips of the celebrity's original audio (16:9 centered, blurred fill above and below, a 「原聲 姓名｜場合｜日期」 source label, 「影片／原頻道」 at top left), ending with a question to the audience. One JSON spec goes all the way to the final video, a 720p preview, a contact sheet, credits.json, and covers. Triggers: 「名人訪談」, 「演講片段」, 「訪談 Reel」, 「Fox 式」, 「解說加原聲」, \"interview reel\"."
 ---
 
 # interview-reel: celebrity interview / talk clip Reels (Fox Hsiao style)
@@ -17,16 +17,16 @@ Josh approved on 2026-10-12: celebrity interviews use the Fox style, with commen
 ## Format (broken down from the Fox Hsiao video)
 | Segment | Visuals | Audio |
 |---|---|---|
-| hook (0 to about 11 seconds) | Full-frame 9:16 B-roll (darkened, slow push-in), cutting every 1 to 2.5 seconds; large title card at top left (small red category tag + two lines of bold text, key words orange) | Narration (Chinese <YOUR_VOICE_NAME> / English Sarah Explains) + music |
+| hook (0 to about 11 seconds) | Full-frame 9:16 B-roll (darkened, slow push-in), cutting every 1 to 2.5 seconds; large title card at top left (small red category tag + two lines of bold text, key words orange) | Narration (Chinese <YOUR_VOICE_NAME> / English Josh - Calm, Warm Taiwanese narrator) + music |
 | clip (original audio, 15 to 30 seconds each, 3 to 4 clips) | 16:9 source centered (y=468), filled above and below with the same frame blurred and darkened; small 「影片／原頻道」 (video / original channel) at the source's top left; below the source a red 「原聲」 (original audio) tag + 「英文名　中文名或身分」 (English name, Chinese name or role) + 「場合｜YYYY.MM.DD」 (occasion, date) | **Original audio only**, no narration on top; music ducked lower (clip_music_db) plus sidechain ducking |
-| explainer (commentary, between clips) | Same as hook, with a fact card instead and small 「來源：誰｜日期」 (source: who, date) below; cuts every 2 to 3.2 seconds | Narration (Chinese <YOUR_VOICE_NAME> / English Sarah Explains) + music |
-| outro | Large centered question (key words yellow) + brand mark + @bounce12340 + one line of small source text at the bottom | Narration asks the audience (Chinese <YOUR_VOICE_NAME> / English Sarah Explains) |
+| explainer (commentary, between clips) | Same as hook, with a fact card instead and small 「來源：誰｜日期」 (source: who, date) below; cuts every 2 to 3.2 seconds | Narration (Chinese <YOUR_VOICE_NAME> / English Josh - Calm, Warm Taiwanese narrator) + music |
+| outro | Large centered question (key words yellow) + brand mark + @bounce12340 + one line of small source text at the bottom | Narration asks the audience (Chinese <YOUR_VOICE_NAME> / English Josh - Calm, Warm Taiwanese narrator) |
 
 Shared across the video: a fixed title bar at the top (brand mark + one-line title, key words orange); centered subtitles, large Traditional Chinese text (white, bold, soft shadow, key words yellow) + one small English line below. In commentary segments the English is the narration text; in clip segments the English is a transcript of the speaker's words and the Chinese is our translation.
 
 ## House rules (must follow)
 - 1080x1920, under 3 minutes, IG final under 45 MB (re-encoded at a lower bitrate automatically if over), H.264 / AAC.
-- Narration: pick the ElevenLabs voice by language. Chinese uses **「<YOUR_VOICE_NAME>」** (`<YOUR_ELEVENLABS_VOICE_ID>`); English uses **Sarah Explains** (`Nhs7eitvQWFTQBsf0yiT`). Model `eleven_multilingual_v2`, via OpenMontage's `elevenlabs_tts`. The key is the machine environment variable `ELEVENLABS_API_KEY` (only carried over with `bash -lc`); **do not print it or write it to files**.
+- Narration: pick the ElevenLabs voice by language. Chinese uses **「<YOUR_VOICE_NAME>」** (`<YOUR_ELEVENLABS_VOICE_ID>`); English uses Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`); tts.py reads it from that env var. Model `eleven_multilingual_v2`, about 1,800 characters of credit per video, via OpenMontage's `elevenlabs_tts`. The key is the machine environment variable `ELEVENLABS_API_KEY` (only carried over with `bash -lc`); **do not print it or write it to files**.
 - Subtitles: Traditional Chinese main subtitles + small English line. Taiwan wording (軟體、資料、影片、網路、運算資源…), 「」 quotes, **no em-dashes** (build.py blocks them).
 - **Commentary must be the majority**: total original audio is recommended at 40% or less; over 50% is blocked by build.py. Each clip is at most 30 seconds (prep_clips.py blocks longer), recommended 15 to 30 seconds.
 - No narration over clips and no altering the speaker's words; the Chinese translation must be faithful and must not add conclusions for the speaker.
@@ -61,7 +61,7 @@ bash -lc "source <SKILLS_DIR>/OpenMontage/om-env.sh >/dev/null; cd $S; python pr
 ```json
 {
   "title": "上方固定標題，[[重點]] 變橘色",
-  "voice": {"voice_id": "Nhs7eitvQWFTQBsf0yiT", "model": "eleven_multilingual_v2"},  // 英文 Sarah Explains；中文片改 <YOUR_ELEVENLABS_VOICE_ID>（你的中文聲音）
+  "voice": {"model": "eleven_multilingual_v2"},  // 英文：voice_id 預設讀 ELEVENLABS_VOICE_ID_EN（Josh 本人聲音）；中文片加 "voice_id": "<YOUR_ELEVENLABS_VOICE_ID>"
   "music": "synth",            // 原創合成配樂；或音檔路徑（要附 music_license）；或 "none"
   "music_db": -19,             // 配樂基準音量
   "clip_music_db": -8,         // 原聲段配樂再壓低幾 dB

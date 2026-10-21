@@ -79,7 +79,7 @@ Approach: do not merge code; add a single "router skill" that points to the pref
 
 ## 5. Rule conflicts (Josh to decide)
 
-1. **Voiceover voice**: INDEX.md, stock-footage-reel, and interview-reel specify the English female voice Sarah Explains (Nhs7eitvQWFTQBsf0yiT) + Traditional Chinese subtitles; VIDEO-SKILLS.md and video-pipeline specify your own voice <YOUR_ELEVENLABS_VOICE_ID> for Chinese. Router draft for now: Chinese voiceover uses <YOUR_ELEVENLABS_VOICE_ID>, English voiceover uses Sarah Explains.
+1. **Voiceover voice**: INDEX.md, stock-footage-reel, and interview-reel specify the English female voice Sarah Explains (Nhs7eitvQWFTQBsf0yiT) + Traditional Chinese subtitles; VIDEO-SKILLS.md and video-pipeline specify your own voice <YOUR_ELEVENLABS_VOICE_ID> for Chinese. Router draft for now: Chinese voiceover uses <YOUR_ELEVENLABS_VOICE_ID>, English voiceover uses Sarah Explains. **Resolved 2026-10-20:** English voiceover uses Josh's own voice Josh - Calm, Warm Taiwanese narrator (`xBHPgy3hJ2fclZQIoDnv`), eleven_multilingual_v2.
 2. **BGM**: VIDEO-SKILLS.md still says "every video must have BGM and a music credit", which conflicts with the 10/19 new rule (credit music when used; not a hard requirement); needs updating.
 3. **OpenMontage is AGPLv3**: making videos locally is fine; revisit if it ever becomes a public-facing service.
 
@@ -120,7 +120,7 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 
 ## Step 2: Shared house rules (every video must meet them)
 - Traditional Chinese with Taiwan wording; use 「」 quotes; no em-dashes (—).
-- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Sarah Explains. Natural pace, no speed-up. Check credits with estimate_only first.
+- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`), model eleven_multilingual_v2, about 1,800 characters of credit per video, `generations_count: 1`. Natural pace, no speed-up. Check credits with estimate_only first.
 - The voiceover reads the subtitles exactly: the final subtitle file is the single source, and on-screen subtitles are chunked from that same file.
 - BGM: include it whenever possible; if used, note the track name, source, and license in facts.md; lacking it does not block the video.
 - No brand logos on screen.

@@ -2,7 +2,7 @@
 
 How every agent on Josh's team runs the video skills in this repo: what to check first, when to stop and ask, what things cost, how to handle failures, and what "done" means. Skill-specific steps stay in each SKILL.md; the topic and style matrix is in [INDEX.md](INDEX.md#skill-matrix-topics-and-agents).
 
-Team docs referenced here live outside this repo, in `<YOUR_WORKSPACE>/media-team/00-profile/` (`voice.md`, `voiceover-process.md`, `publish-queue.md`). When a team doc is newer than a SKILL.md, the team doc wins. For example, since 2026-10-20 `voice.md` says new English videos use Josh's own English voice (`<YOUR_ELEVENLABS_VOICE_ID>`, eleven_multilingual_v2, speed 1.0) instead of Sarah Explains.
+Team docs referenced here live outside this repo, in `<YOUR_WORKSPACE>/media-team/00-profile/` (`voice.md`, `voiceover-process.md`, `publish-queue.md`).
 
 ## 1. Preflight checklist
 
@@ -42,7 +42,7 @@ Use only these documented figures. Anything else counts as **unknown**: say "cos
 
 | Item | Documented cost | Source |
 |---|---|---|
-| ElevenLabs English voiceover | About 1,800 characters of credit per video (sun-reel English: 1,884 actual) | team `voice.md`, `voiceover-process.md` |
+| ElevenLabs English voiceover (Josh - Calm, Warm Taiwanese narrator, `xBHPgy3hJ2fclZQIoDnv`) | About 1,800 characters of credit per video, `generations_count: 1` (sun-reel English: 1,884 actual) | team `voice.md`, `voiceover-process.md` |
 | ElevenLabs `creative_generate_speech` | Default `generations_count` is 4 = 4x credits; always set 1. Resending the same request charges again | stock-footage-reel SKILL.md |
 | X post with an external link | $0.20 vs $0.015 without a link | X API Engineer (router Step 3) |
 | Pexels, Wikimedia, Prelinger, Playwright, OpenMontage local tools | Free | licenses.md, SKILL.md files |
