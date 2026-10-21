@@ -1,0 +1,14 @@
+{
+  "queries": [
+    "(\"Claude Code\" OR \"OpenAI\" OR \"AI agent\") -is:retweet lang:en",
+    "(FDA OR EMA OR TFDA) (AI OR \"machine learning\") -is:retweet",
+    "(\"one-person company\" OR \"solo founder\" OR \"indie hacker\") AI -is:retweet"
+  ],
+  "classify": {
+    "interview": ["interview", "podcast", "keynote", "fireside", "said in a talk"],
+    "tool_demo": ["demo", "built with", "open source", "github.com", "launch"],
+    "pharma_regulatory": ["fda", "ema", "tfda", "regulator", "guidance", "approval", "clinical"],
+    "numbers_news": ["$", "%", "billion", "million", "benchmark", "revenue"],
+    "one_person_company": ["solo founder", "one-person", "indie hacker", "bootstrapped", "mrr"]
+  }
+}

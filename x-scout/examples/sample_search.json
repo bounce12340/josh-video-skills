@@ -1,0 +1,8 @@
+{"data":[
+ {"id":"1","text":"Sam Altman said in a new podcast interview that agents will...","created_at":"2026-10-21T01:00:00Z","public_metrics":{"like_count":10}},
+ {"id":"2","text":"FDA publishes draft guidance on AI in drug development","created_at":"2026-10-21T02:00:00Z"},
+ {"id":"3","text":"I built with Claude Code a jukebox, open source on github.com/x","created_at":"2026-10-21T03:00:00Z"},
+ {"id":"4","text":"Anthropic revenue hits $5 billion run rate","created_at":"2026-10-21T04:00:00Z"},
+ {"id":"5","text":"Solo founder at 40k MRR shares her AI stack","created_at":"2026-10-21T05:00:00Z"},
+ {"id":"6","text":"OpenAI releases a report on agent monitoring","created_at":"2026-10-21T06:00:00Z"}
+]}

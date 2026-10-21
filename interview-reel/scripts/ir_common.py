@@ -7,7 +7,7 @@ SKILLS_DIR = Path(os.environ.get("SKILLS_DIR", Path(__file__).resolve().parents[
 SFR = SKILLS_DIR / "stock-footage-reel" / "scripts"
 sys.path.insert(0, str(SFR))
 from common import (font, FONT_SANS, FONT_SERIF, COVERS, load_json, save_json, probe_duration, download,  # noqa
-                    http_get, WHITE, BRAND_RED)
+                    http_get, WHITE, BRAND_RED, check_config)
 
 CACHE = SKILL / "cache"
 FONT_EN = "/usr/share/fonts/truetype/sand-box/google/Noto Sans/NotoSans-VariableFont_wdth,wght.ttf"

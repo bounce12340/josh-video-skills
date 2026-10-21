@@ -131,7 +131,8 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 
 ## Step 3: Wrap-up
 1. `reel.sh mix` (when there is BGM) → `reel.sh qa` → `reel.sh ig`
-2. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+2. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md, x_post.txt, x_longpost.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+3. X drafts: `x_post.txt` (single post) and `x_longpost.md` (long post) go to X Launch Traction; Josh approves; then Grok Boss posts. Keep external links out of the post body and put them in a reply instead (per X API Engineer, a post with a link costs $0.20 vs $0.015 without). On X, the original-video link and credit required in Step 2 go in that reply.
 
 ## Step 4: Hand off to the fact editor
 - Notify the fact editor (事實編輯) to review `03-drafts/<題目>/`; the report goes in `04-review/<稿名>-review.md`.

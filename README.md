@@ -39,6 +39,14 @@ josh-video-skills/
 └── openmontage-house/       # House-rules adapter layer for OpenMontage
 │   ├── SKILL.md
 │   └── scripts/om_clips.py
+├── x-scout/                 # Read-only X topic watcher: classify hits, suggest skill + style
+│   ├── SKILL.md
+│   ├── scripts/x_scout.py
+│   └── examples/
+├── analytics/               # style_compare.py: median metrics per skill / style from X exports
+│   ├── README.md
+│   ├── style_compare.py
+│   └── style_tags.csv
 └── opus-5-5-prompts/        # Reference list of viral Opus 5.5 video prompts (links only, no prompt text)
     ├── README.md
     ├── catalog.md
@@ -57,7 +65,7 @@ The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the 
    ```bash
    git clone https://github.com/bounce12340/josh-video-skills.git
    cd josh-video-skills
-   for s in josh-video-router interview-reel stock-footage-reel screen-record openmontage-house; do
+   for s in josh-video-router interview-reel stock-footage-reel screen-record openmontage-house x-scout; do
      cp -r "$s" ~/.claude/skills/
    done
    ```
@@ -78,7 +86,7 @@ Placeholders in the docs:
 | `<YOUR_WORKSPACE>` | Your working folder (drafts, covers, voice file, etc.) |
 | `<YOUR_CONTACT_URL>` | The contact URL left in the User-Agent when fetching footage |
 
-Environment variables read by the scripts (all optional, with defaults):
+Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, `COVERS_DIR`, and `SFR_USER_AGENT` must be set before building: the build scripts (and `--check`) stop with a clear error if they still hold template placeholders.
 
 | Environment variable | Purpose |
 |---|---|
@@ -89,6 +97,7 @@ Environment variables read by the scripts (all optional, with defaults):
 | `COVERS_DIR` | Folder with the cover `render.py` and `fonts/` (Noto Sans TC / Noto Serif TC) |
 | `BRAND_NAME`, `BRAND_HANDLE` | Brand mark text on the video and the end-card handle |
 | `SFR_USER_AGENT`, `SFR_CACHE` | stock-footage-reel's User-Agent and cache location |
+| `X_BEARER_TOKEN` | Read-only X API token for x-scout and optional analytics pulls. Environment variable only; never commit it |
 
 English voiceover defaults to Sarah Explains from the ElevenLabs public voice library (`Nhs7eitvQWFTQBsf0yiT`); change it with `voice_id` in the spec.
 
