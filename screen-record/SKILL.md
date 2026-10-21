@@ -1,30 +1,30 @@
 ---
 name: screen-record
-description: "用 Playwright 錄「公開網頁」的操作畫面（捲動、滑過、點連結、高亮重點、章節卡），輸出 1080x1920 直式 mp4，當 Reel 的工具／網站導覽素材。觸發語：「錄一段網頁操作」「網站導覽素材」「螢幕錄影素材」「screen record」。只錄公開頁面，不登入、不發文。"
+description: "Use Playwright to record interactions on a public web page (scrolling, hovering, clicking links, highlighting key points, chapter cards) and output a vertical 1080x1920 mp4 as tool / website walkthrough footage for a Reel. Triggers: 「錄一段網頁操作」 (record a web interaction), 「網站導覽素材」 (website walkthrough footage), 「螢幕錄影素材」 (screen recording footage), \"screen record\". Public pages only; never logs in or posts."
 ---
 
-# screen-record：公開網頁操作錄影（Reel 素材）
+# screen-record: public web page interaction recording (Reel footage)
 
-Josh 2026-10-11 核准安裝，用途只有一個：錄**公開網頁**的操作畫面，當 IG Reel 的影片素材。
-發文流程完全不變（IG／Threads 照舊用 box 瀏覽器那套方法），這個工具不碰發文。
+Josh approved installing this on 2026-10-11 for one purpose only: recording interactions on **public web pages** as footage for IG Reels.
+The posting workflow is completely unchanged (IG / Threads still use the box browser method); this tool never touches posting.
 
-## 硬規則（每次都要遵守）
+## Hard rules (follow every time)
 
-1. 每次都用全新、暫存、只在記憶體裡的瀏覽器（`chromium.launch()` + `newContext()`，不給 userDataDir）。
-2. **絕不**指向 box 已登入的瀏覽器設定檔；**絕不**用 `--extension`、`attach`、CDP／wsEndpoint 連到 box 瀏覽器；**絕不**載入 cookies 或 storageState；不用 `--persistent`／`--profile`。
-3. 不登入任何網站、不輸入文字、不送出表單、不發文、不留言、不按讚。
-4. 只錄公開頁面（http/https，不可 localhost／內網）。IG、Threads、FB 只能在「未登入」狀態看公開頁，遇到登入牆就換來源，不要嘗試登入。
-5. record.mjs 內建防護：spec 出現 storageState／cookies／userDataDir／profile／cdp／extension／login／password／fill／type 等欄位直接拒絕；所有 POST／PUT／PATCH／DELETE 請求一律擋掉（log 會出現 `blocked POST ...`，正常）；拒絕點表單送出鈕；非 http(s) 或內網網址拒絕。
-6. 不要為了繞過防護去改 record.mjs。真的需要登入後的畫面，停下來問 Josh。
+1. Always use a fresh, temporary, in-memory browser (`chromium.launch()` + `newContext()`, no userDataDir).
+2. **Never** point at the box's logged-in browser profile; **never** use `--extension`, `attach`, or CDP / wsEndpoint to connect to the box browser; **never** load cookies or storageState; do not use `--persistent` / `--profile`.
+3. Do not log in to any site, type text, submit forms, post, comment, or like.
+4. Record public pages only (http/https; no localhost / internal network). IG, Threads, and FB may only be viewed as public pages while logged out; if you hit a login wall, switch sources and do not try to log in.
+5. record.mjs has built-in guards: a spec containing fields such as storageState / cookies / userDataDir / profile / cdp / extension / login / password / fill / type is rejected outright; all POST / PUT / PATCH / DELETE requests are blocked (the log shows `blocked POST ...`, which is normal); clicking form submit buttons is refused; non-http(s) or internal URLs are refused.
+6. Do not modify record.mjs to get around the guards. If you truly need logged-in screens, stop and ask Josh.
 
-## 已安裝
+## Installed
 
-- Playwright（Node 函式庫）1.64.0：裝在本資料夾 `node_modules/`（Apache-2.0）
-- Playwright CLI `@playwright/cli` 0.1.22：全域指令 `playwright-cli`（~/.local/bin，Apache-2.0）。預設 session 是記憶體設定檔，可以臨時手動看頁面、截圖；**不要**加 `--persistent`、`--profile`、`attach --extension`。
-- Chromium：`npx playwright install chromium`（~/.cache/ms-playwright/chromium-1248、chromium_headless_shell-1248）
-- 沒有裝 @playwright/mcp（CLI＋本腳本已足夠，Microsoft 也建議 agent 用 CLI）。
+- Playwright (Node library) 1.64.0: installed in this folder's `node_modules/` (Apache-2.0)
+- Playwright CLI `@playwright/cli` 0.1.22: global command `playwright-cli` (~/.local/bin, Apache-2.0). The default session uses an in-memory profile, fine for ad-hoc manual viewing and screenshots; **do not** add `--persistent`, `--profile`, or `attach --extension`.
+- Chromium: `npx playwright install chromium` (~/.cache/ms-playwright/chromium-1248, chromium_headless_shell-1248)
+- @playwright/mcp is not installed (the CLI plus this script are enough, and Microsoft also recommends the CLI for agents).
 
-## 用法
+## Usage
 
 ```bash
 cd <SKILLS_DIR>/screen-record
@@ -33,7 +33,7 @@ node record.mjs spec.json --out /path/x.mp4
 ./contact_sheet.sh x.mp4 x_sheet.jpg 4 3  # 4x3 縮圖拼板，用 Read 看
 ```
 
-範例：`examples/playwright-mcp.json`（測試片：<YOUR_WORKSPACE>/media-team/03-drafts/screen-record-test/test.mp4，19.8 秒，4.1 MB）。
+Example: `examples/playwright-mcp.json` (test clip: <YOUR_WORKSPACE>/media-team/03-drafts/screen-record-test/test.mp4, 19.8 seconds, 4.1 MB).
 
 ### spec.json
 
@@ -57,25 +57,25 @@ node record.mjs spec.json --out /path/x.mp4
 }
 ```
 
-- 找元素三選一：`selector`（CSS）、`role`＋`name`（最穩）、`text`（可加 `exact`）。
-- `scroll`：`by` 像素，或用 `to`／`role`／`text` 捲到某元素（`offset` 預設離頂端 25%），`ms` 捲動時間（緩入緩出）。
-- `highlight`：黃框＋可選標籤，`ms` 後移除。
-- `chapter`：Playwright 原生章節卡（模糊背景＋標題）。
-- `click`、`hover` 有 Playwright 原生 showActions：動畫游標＋目標外框＋動作說明（`"showActions": false` 可關）。
-- 其他選項：`fps`（預設 30）、`crf`（預設 23）、`mobile`（手機模擬）、`colorScheme`、`locale`、`tail`、`keepWebm`。
+- Locate elements in one of three ways: `selector` (CSS), `role` + `name` (most reliable), or `text` (optionally with `exact`).
+- `scroll`: `by` in pixels, or `to` / `role` / `text` to scroll to an element (`offset` defaults to 25% from the top); `ms` is the scroll duration (ease in/out).
+- `highlight`: yellow box plus an optional label, removed after `ms`.
+- `chapter`: Playwright's native chapter card (blurred background + title).
+- `click` and `hover` use Playwright's native showActions: animated cursor + target outline + action caption (turn off with `"showActions": false`).
+- Other options: `fps` (default 30), `crf` (default 23), `mobile` (mobile emulation), `colorScheme`, `locale`, `tail`, `keepWebm`.
 
-### 畫面尺寸
+### Frame size
 
-Playwright 的 screencast 用 CSS 像素錄（deviceScaleFactor 不會反映到影片），所以：
-- 預設 viewport 720x1280 錄，再用 lanczos 放大到 1080x1920：版面像大手機、字夠大，畫質略軟但 Reel 夠用。
-- 要最銳利：`"viewport": {"width":1080,"height":1920}`（桌面版面、字比較小）。
-- 要橫式錄再裁直式：`"viewport": {"width":1280,"height":720}, "cropTo916": true`（可加 `"cropX": 200` 指定裁切起點），輸出仍是 1080x1920，但只保留中間一條，通常不如直接用直式 viewport。
+Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflected in the video), so:
+- By default, record at viewport 720x1280 and upscale to 1080x1920 with lanczos: the layout looks like a large phone with readable text; slightly soft, but good enough for Reels.
+- For maximum sharpness: `"viewport": {"width":1080,"height":1920}` (desktop layout, smaller text).
+- To record landscape and crop to vertical: `"viewport": {"width":1280,"height":720}, "cropTo916": true` (optionally `"cropX": 200` for the crop start). Output is still 1080x1920 but keeps only the middle strip; usually worse than a vertical viewport.
 
-## 放進成片
+## Putting it into the final video
 
-- **stock-footage-reel**：在 shots.json 該鏡寫
+- **stock-footage-reel**: in shots.json, for that shot write
   `"pick": {"source":"file","path":"/abs/clip01.mp4","license":"Screen recording of <site>","author":"<site 擁有者>"}`
-- **OpenMontage（經 openmontage-house）**：當本機素材（local clip）丟進素材清單，或 screen-demo 流程的實錄來源。
-- 本家規則照舊：直式 1080x1920、Sarah Explains 配音、繁中主字幕＋小字英文、B 剪報 Vox 封面、IG 成片 45 MB 以下。
-- credits.json 加一筆：`{"source":"screen-record","credit":"Screen recording of <site>","url":"<網址>","recorded":"YYYY-MM-DD"}`；片尾出處寫「Screen recording of <site>」。
-- 錄的是別人的網站：只當介紹／評論畫面使用，不要錄有個資、別人私訊或付費牆內容。
+- **OpenMontage (via openmontage-house)**: add it to the asset list as a local clip, or use it as the real recording source for the screen-demo pipeline.
+- House rules still apply: vertical 1080x1920, Sarah Explains voiceover, Traditional Chinese main subtitles + small English line, B clipping-style Vox cover, IG final under 45 MB.
+- Add an entry to credits.json: `{"source":"screen-record","credit":"Screen recording of <site>","url":"<網址>","recorded":"YYYY-MM-DD"}`; the end credit reads "Screen recording of <site>".
+- When recording someone else's site: use it only as introduction / commentary footage; do not record personal data, other people's private messages, or paywalled content.

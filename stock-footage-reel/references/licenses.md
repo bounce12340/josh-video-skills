@@ -1,11 +1,11 @@
-# 素材來源與授權（2026-10-11 實際查證）
+# Footage sources and licenses (verified 2026-10-11)
 
-| 來源 | 怎麼抓 | 授權（查到的原文重點） | 能不能用在 @bounce12340 |
+| Source | How to fetch | License (key points from the original text) | Usable for @bounce12340? |
 |---|---|---|---|
-| Pexels | 官方 API `api.pexels.com/videos/search`，要 `PEXELS_API_KEY`（免費） | Pexels License：免費、可商用、可修改，不需標註但歡迎標註；不能把素材原樣轉賣、不能暗示被拍攝者代言 | 可以，主力來源。credits.json 記攝影師與網址 |
-| Pixabay | 官方 API，要 `PIXABAY_API_KEY`（目前沒有） | Pixabay Content License：免費可商用、不需標註 | 可以（有 key 才會啟用） |
-| Mixkit | 搜尋頁 `mixkit.co/free-stock-video/discover/<詞>/` 加項目頁；robots.txt 全站 Allow（只擋 CCBot）；每次請求間隔 2 秒，最多看 4 個項目頁 | 有兩種影片授權。**Free License**：可商用、社群貼文、廣告。**Restricted License**：只限個人、非商業；明文不可用在「公司社群貼文」或「替你賺錢的生意做行銷」。2026-10-11 抽查 12 支影片（server、hacker 兩個分類），免費下載的 720p 全部標成 Restricted，商用要付費走 Envato | 腳本預設只收 Free License，Restricted 會自動跳過。要用 Restricted 需加 `--allow-mixkit-restricted`，**這要 Josh 決定** |
-| Mixkit 音樂 | 同上 | Stock Music Free License：可用在社群影片、廣告、YouTube；不可用在 CD/DVD、電視廣播、遊戲；不可單獨 remix 成音樂 | 可以（目前預設改用自己合成的配樂） |
-| Internet Archive／Prelinger | `archive.org/advancedsearch.php`＋`archive.org/metadata/<id>`，下載一次就快取 | Prelinger 收藏多數標 `creativecommons.org/licenses/publicdomain/`（公有領域）。**有些項目 metadata 沒寫授權**，腳本只收有標公有領域的 | 可以；片尾標「Archival: Prelinger Archives (Public Domain)」 |
-| Wikimedia Commons | MediaWiki API，`filetype:video` 搜尋 | 只收 Public domain／CC0／CC BY（CC BY 一定要標作者、授權、網址；CC BY-SA 預設排除） | 可以，但現代 B-roll 很少，當備案 |
-| synth_broll.py | 本機產生程式碼捲動、終端機、格線 | 自己做的 | 都找不到時的保底 |
+| Pexels | Official API `api.pexels.com/videos/search`, needs `PEXELS_API_KEY` (free) | Pexels License: free, commercial use allowed, may modify; attribution not required but appreciated; may not resell footage unchanged or imply endorsement by people shown | Yes, the main source. Record photographer and URL in credits.json |
+| Pixabay | Official API, needs `PIXABAY_API_KEY` (not available yet) | Pixabay Content License: free for commercial use, no attribution required | Yes (enabled only once there is a key) |
+| Mixkit | Search page `mixkit.co/free-stock-video/discover/<詞>/` plus item pages; robots.txt allows the whole site (blocks only CCBot); 2 seconds between requests, at most 4 item pages | Two video licenses. **Free License**: commercial use, social posts, ads. **Restricted License**: personal, non-commercial only; explicitly not for "company social posts" or "marketing a business that makes you money". A 2026-10-11 spot check of 12 videos (server and hacker categories) found every free 720p download marked Restricted; commercial use requires paying via Envato | The script accepts only Free License by default and skips Restricted automatically. Using Restricted requires `--allow-mixkit-restricted`, **and that is Josh's decision** |
+| Mixkit music | Same as above | Stock Music Free License: usable in social videos, ads, YouTube; not on CD/DVD, TV broadcast, or games; may not be remixed into standalone music | Yes (the default is now self-synthesized music) |
+| Internet Archive / Prelinger | `archive.org/advancedsearch.php` + `archive.org/metadata/<id>`, cached after one download | Most Prelinger items are tagged `creativecommons.org/licenses/publicdomain/` (public domain). **Some items have no license in metadata**; the script accepts only items tagged public domain | Yes; end credit reads "Archival: Prelinger Archives (Public Domain)" |
+| Wikimedia Commons | MediaWiki API, search with `filetype:video` | Accepts only Public domain / CC0 / CC BY (CC BY must credit author, license, and URL; CC BY-SA excluded by default) | Yes, but modern B-roll is scarce; a fallback |
+| synth_broll.py | Generates code scrolling, terminals, and grids locally | Self-made | The last resort when nothing else is found |
