@@ -47,3 +47,14 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 ## Step 4: Hand off to the fact editor
 - Notify the fact editor (事實編輯) to review `03-drafts/<題目>/`; the report goes in `04-review/<稿名>-review.md`.
 - Once it passes, report to the main bot: file path, duration, file size, the full script, and any facts that could not be verified.
+
+## Best fit and agent usage
+
+**Best fit:** every topic type; it picks the skill and does not render. **Not for:** posting, scheduling, or choosing a skill outside the decision table.
+
+- **Grok Boss**: loads this first for any video request and names the target skill in the brief.
+- **內容製作 (Content Producer)**: follows Steps 0 to 3 and delivers the Step 3 files.
+- **事實編輯 (Fact Editor)**: uses Step 2 as the review checklist and writes the Step 4 report.
+- **情報偵察員 (Scout)**: uses the decision table to attach a skill and style to each topic proposal (rule: [INDEX.md](../INDEX.md#topic-proposals-recommended-style-rule)).
+- **數據復盤師 (Analytics)**: tags each published video with the skill chosen in Step 1.
+- **Coding agent (Claude Code / Cursor)**: input: topic + sources; output: the chosen skill name, then the Step 3 deliverables. Never posts.

@@ -56,3 +56,14 @@ Available sources: pexels (has key), archive_org, wikimedia, nasa, nara, loc, co
 
 ## License (AGPLv3)
 Using OpenMontage as a tool to make videos, including for commercial posts, is fine, and the output videos are not bound by the AGPL. Only "modifying its code and running it as a network service for others" requires releasing source code. So do not run a modified OpenMontage as a public-facing service.
+
+## Best fit and agent usage
+
+**Best fit:** long video or podcast into shorts, translated dubbing, screen tutorials, reference-Reel analysis, narration-free montage, extra archival footage. **Not for:** narrated real-footage Reels, explainer animation, interview commentary, or paid generation.
+
+- **Grok Boss**: routes long-to-short, dubbing, podcast, and montage requests here.
+- **內容製作 (Content Producer)**: starts the pipeline with the house rules pasted first and delivers to 03-drafts.
+- **事實編輯 (Fact Editor)**: verifies each Archive.org item's license and the rights to downloaded videos.
+- **情報偵察員 (Scout)**: proposes it when a topic starts from a long video, podcast, or reference Reel.
+- **數據復盤師 (Analytics)**: tags which OpenMontage pipeline was used.
+- **Coding agent (Claude Code / Cursor)**: `source OpenMontage/om-env.sh`; input: source media + house rules; output: 9:16 mp4 under 45 MB; `om_clips.py` prints `pick` entries.

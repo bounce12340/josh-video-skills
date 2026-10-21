@@ -119,3 +119,14 @@ Visual spec (matched to AYi's original videos):
 - archive.org is occasionally very slow or returns empty; the script retries three times; on failure that shot falls back to synth; check the `note:` messages and re-fetch.
 - Prelinger films are mostly 4:3, 480p, so cropping to vertical enlarges them a lot, masked with soft focus and grain; prefer segments with simple composition and the subject centered.
 - This machine has no GPU: a 30-second video takes about 1 minute to render; a 3-minute video about 5 to 8 minutes.
+
+## Best fit and agent usage
+
+**Best fit:** narrated AI news and essay summaries; pharma regulatory news; narrated one-person-company stories. **Not for:** interview highlights, explainer animation, or numbers-heavy data cards.
+
+- **Grok Boss**: routes narrated news with real footage here (the default fallback).
+- **內容製作 (Content Producer)**: writes script.txt and shots.json, generates the voiceover, fetches footage, builds.
+- **事實編輯 (Fact Editor)**: checks every line against the source and every clip's license in credits.json.
+- **情報偵察員 (Scout)**: flags whether archival film suits the angle.
+- **數據復盤師 (Analytics)**: compares archival-heavy vs modern-footage videos.
+- **Coding agent (Claude Code / Cursor)**: input: script.txt, vo.mp3, shots.json; output: reel.mp4, contact sheet, credits.json, covers.

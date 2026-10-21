@@ -45,6 +45,10 @@ josh-video-skills/
     └── build_catalog.py
 ```
 
+## Which skill for which topic
+
+The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the recommended-style rule for topic proposals live in [INDEX.md](INDEX.md#skill-matrix-topics-and-agents).
+
 ## Installation
 
 1. Clone this repo.

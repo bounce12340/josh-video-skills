@@ -104,3 +104,14 @@ bash -lc "source <SKILLS_DIR>/OpenMontage/om-env.sh >/dev/null; cd $S; python pr
 - YouTube `--download-sections` returns 403, so only whole-video downloads work (a long 1080p interview may be hundreds of MB, cached in cache/sources/; delete after use).
 - No GPU: a 1-minute video takes about 2 minutes to render; a 3-minute video about 6 to 8 minutes.
 - Pexels keyword results are sometimes off; check the contact sheet, then change keywords or use `image` / `file`.
+
+## Best fit and agent usage
+
+**Best fit:** celebrity / founder interview highlights and talks with an official public video; speaker-on-record AI news. **Not for:** no official video, reposts, tool demos, or mostly-original-audio cuts (over 50% is blocked).
+
+- **Grok Boss**: routes here only when official interview footage exists.
+- **內容製作 (Content Producer)**: writes the spec, translates the clip subs, runs prep_clips → tts → fetch_broll → build.
+- **事實編輯 (Fact Editor)**: checks official channel, translation faithfulness, `cite` sources, and no implied endorsement.
+- **情報偵察員 (Scout)**: names the official source video and channel when proposing the topic.
+- **數據復盤師 (Analytics)**: records the original-audio share and clip count from build.py next to the results.
+- **Coding agent (Claude Code / Cursor)**: input: spec.json (see examples/); output: mp4, 720p preview, contact sheet, credits.json, covers. Run `build.py --check` first.

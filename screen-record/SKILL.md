@@ -79,3 +79,14 @@ Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflecte
 - House rules still apply: vertical 1080x1920, Sarah Explains voiceover, Traditional Chinese main subtitles + small English line, B clipping-style Vox cover, IG final under 45 MB.
 - Add an entry to credits.json: `{"source":"screen-record","credit":"Screen recording of <site>","url":"<網址>","recorded":"YYYY-MM-DD"}`; the end credit reads "Screen recording of <site>".
 - When recording someone else's site: use it only as introduction / commentary footage; do not record personal data, other people's private messages, or paywalled content.
+
+## Best fit and agent usage
+
+**Best fit:** AI tool demos and walkthroughs of public pages, as footage. **Not for:** logged-in pages, typing or forms, private or paywalled content, or finished videos on its own.
+
+- **Grok Boss**: adds a screen-record step when a video needs real footage of a public site.
+- **內容製作 (Content Producer)**: writes the spec, records, and adds the clip to shots.json via `pick` file.
+- **事實編輯 (Fact Editor)**: confirms only public pages appear and the credit reads "Screen recording of <site>".
+- **情報偵察員 (Scout)**: notes the public URL that can be shown.
+- **數據復盤師 (Analytics)**: tags videos that contain demo footage.
+- **Coding agent (Claude Code / Cursor)**: `npm install`, then input: spec.json; output: 1080x1920 mp4 + contact sheet. Never logs in or posts.
