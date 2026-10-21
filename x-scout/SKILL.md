@@ -19,6 +19,10 @@ python3 scripts/x_scout.py --config examples/topics.json --input examples/sample
 ```
 - `examples/topics.json`: `queries` (X search query syntax) and `classify` (keyword lists per topic type). Edit both to match the current watch list.
 - Output per hit: post URL, time, public metrics, text, `topic_type`, `suggested_skill`, `suggested_style`, `reason`.
+- `--sort relevancy` (default) returns popular posts first; `--sort recency` returns the newest first.
+- Requests `expansions=author_id&user.fields=username`, so each hit has `author` and a `https://x.com/<handle>/status/<id>` URL (falls back to `/i/web/status/<id>` if the author is missing).
+- On an HTTP error the script exits with the status code and X's error body (the token is never printed).
+- Old web-search operators such as `min_faves:`, `min_retweets:`, `since:`, `until:` are not supported by v2 recent search; the script rejects them before calling the API. Filter by `metrics` after the search instead.
 - Each query costs read quota on X API; keep `--max` small and run on a schedule rather than in a loop.
 - Filtered stream rules (`/2/tweets/search/stream/rules`) are an alternative for continuous watching; this script uses recent search because it needs no long-running connection. Changing stream rules is a write to X app config, so ask Josh before adding them.
 
