@@ -39,8 +39,12 @@ josh-video-skills/
 │   ├── record.mjs
 │   └── examples/
 └── openmontage-house/       # OpenMontage 的本家規則轉接層
-    ├── SKILL.md
-    └── scripts/om_clips.py
+│   ├── SKILL.md
+│   └── scripts/om_clips.py
+└── opus-5-5-prompts/        # Opus 5.5 爆紅影片 prompt 參考清單（只放連結，不收原文）
+    ├── README.md
+    ├── catalog.md
+    └── build_catalog.py
 ```
 
 ## 安裝
@@ -114,6 +118,7 @@ josh-video-skills/
 | impeccable | https://github.com/pbakaus/impeccable | Apache-2.0 |
 | video-shotcraft | https://github.com/Vincentwei1021/video-shotcraft | Apache-2.0 |
 | video-talkcraft | https://github.com/Vincentwei1021/video-talkcraft | PolyForm Noncommercial |
+| awesome-opus5-5-videos（prompt 清單，見 opus-5-5-prompts/） | https://github.com/yihui-dev/awesome-opus5-5-videos | MIT（各 prompt 屬原作者，本 repo 不收原文） |
 | anything2explainer | https://github.com/Vincentwei1021/anything2explainer | PolyForm Noncommercial |
 | hyperframes（相依套件） | https://github.com/heygen-com/hyperframes | Apache-2.0 |
 
