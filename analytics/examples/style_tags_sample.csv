@@ -1,0 +1,6 @@
+post_id,platform,video,skill,style,posted_at,notes
+101,x,ep-a,stock-footage-reel,Dark typography,2026-10-01,
+102,x,ep-b,stock-footage-reel,Dark typography,2026-10-02,
+103,x,ep-c,interview-reel,Kinetic typography,2026-10-03,
+104,x,ep-d,screen-record,Tool explainer,2026-10-04,
+999,x,ep-e,interview-reel,Kinetic typography,2026-10-05,not in export

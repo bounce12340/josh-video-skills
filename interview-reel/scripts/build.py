@@ -10,7 +10,7 @@
 import argparse, io, math, os, re, subprocess, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from ir_common import (L, W, H, FPS, YELLOW, ORANGE, TAG_RED, GREY, WHITE, BRAND_RED, FONT_SANS, FONT_EN, COVERS,
+from ir_common import (check_config, L, W, H, FPS, YELLOW, ORANGE, TAG_RED, GREY, WHITE, BRAND_RED, FONT_SANS, FONT_EN, COVERS,
                        font, load_json, save_json, probe_duration, run, narr_lines)  # noqa
 from PIL import Image, ImageDraw, ImageFilter
 
@@ -345,6 +345,7 @@ def main():
     ap.add_argument("--spec", required=True); ap.add_argument("--work", required=True); ap.add_argument("--out", required=True)
     ap.add_argument("--name", default="reel"); ap.add_argument("--check", action="store_true"); ap.add_argument("--no-cover", action="store_true")
     a = ap.parse_args()
+    check_config(BRAND_NAME=BRAND_NAME, BRAND_HANDLE=BRAND_HANDLE)
     spec = load_json(a.spec); work = Path(a.work).resolve(); out = Path(a.out).resolve(); out.mkdir(parents=True, exist_ok=True)
     items, subs, total, problems, man = timeline(spec, work)
     share, errs, warns = check(spec, items, total, problems)

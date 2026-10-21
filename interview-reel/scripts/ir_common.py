@@ -7,7 +7,7 @@ SKILLS_DIR = Path(os.environ.get("SKILLS_DIR", Path(__file__).resolve().parents[
 SFR = SKILLS_DIR / "stock-footage-reel" / "scripts"
 sys.path.insert(0, str(SFR))
 from common import (font, FONT_SANS, FONT_SERIF, COVERS, load_json, save_json, probe_duration, download,  # noqa
-                    http_get, WHITE, BRAND_RED)
+                    http_get, WHITE, BRAND_RED, check_config)
 
 CACHE = SKILL / "cache"
 FONT_EN = "/usr/share/fonts/truetype/sand-box/google/Noto Sans/NotoSans-VariableFont_wdth,wght.ttf"
@@ -25,7 +25,8 @@ L = dict(brand_y=214, title_y=252, title_size=44,
          sub_bottom=1490, zh_size=60, en_size=32, text_w=900, margin=72,
          outro_top=600, credit_y=1508)
 
-VOICE_ID = "Nhs7eitvQWFTQBsf0yiT"   # Sarah Explains
+VOICE_ID = os.environ.get("ELEVENLABS_VOICE_ID_EN", "")   # English voice; Josh: "Josh - Calm, Warm Taiwanese narrator" (see README)
+VOICE_NAME = os.environ.get("ELEVENLABS_VOICE_NAME_EN", "Josh - Calm, Warm Taiwanese narrator")
 VOICE_MODEL = "eleven_multilingual_v2"
 
 

@@ -76,7 +76,7 @@ Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflecte
 - **stock-footage-reel**: in shots.json, for that shot write
   `"pick": {"source":"file","path":"/abs/clip01.mp4","license":"Screen recording of <site>","author":"<site 擁有者>"}`
 - **OpenMontage (via openmontage-house)**: add it to the asset list as a local clip, or use it as the real recording source for the screen-demo pipeline.
-- House rules still apply: vertical 1080x1920, Sarah Explains voiceover, Traditional Chinese main subtitles + small English line, B clipping-style Vox cover, IG final under 45 MB.
+- House rules still apply: vertical 1080x1920, English voiceover in Josh's own voice (Josh - Calm, Warm Taiwanese narrator), Traditional Chinese main subtitles + small English line, B clipping-style Vox cover, IG final under 45 MB.
 - Add an entry to credits.json: `{"source":"screen-record","credit":"Screen recording of <site>","url":"<網址>","recorded":"YYYY-MM-DD"}`; the end credit reads "Screen recording of <site>".
 - When recording someone else's site: use it only as introduction / commentary footage; do not record personal data, other people's private messages, or paywalled content.
 
@@ -90,3 +90,5 @@ Playwright's screencast records in CSS pixels (deviceScaleFactor is not reflecte
 - **情報偵察員 (Scout)**: notes the public URL that can be shown.
 - **數據復盤師 (Analytics)**: tags videos that contain demo footage.
 - **Coding agent (Claude Code / Cursor)**: `npm install`, then input: spec.json; output: 1080x1920 mp4 + contact sheet. Never logs in or posts.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

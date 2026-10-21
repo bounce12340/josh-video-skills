@@ -2,14 +2,15 @@
 """把配音＋素材＋字幕＋配樂剪成成片，並輸出聯絡表、credits、封面。
 
 用法：
-  python3 build.py --shots shots.json --work WORK --out OUT_DIR [--name reel] [--plan]
+  python3 build.py --shots shots.json --work WORK --out OUT_DIR [--name reel] [--plan] [--check]
 需要先跑：align.py（timing.json）→ fetch_footage.py（footage.json、credits.json）。
+--check 只檢查設定（品牌、帳號、COVERS_DIR、User-Agent 不能還是範本佔位符），沒過就停下來。
 --plan 只印出每鏡自動切好的字幕段落，方便在 shots.json 寫對應的英文 "en" 清單。
 """
 import argparse, json, math, os, re, subprocess, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from common import (layout, font, FONT_SANS, FONT_SERIF, GOLD, BRAND_RED, WHITE, COVERS, load_json, save_json,
+from common import (check_config, layout, font, FONT_SANS, FONT_SERIF, GOLD, BRAND_RED, WHITE, COVERS, load_json, save_json,
                     probe_duration)  # noqa
 from PIL import Image, ImageDraw, ImageFilter
 
@@ -314,7 +315,11 @@ def main():
     ap.add_argument("--name", default="reel")
     ap.add_argument("--plan", action="store_true")
     ap.add_argument("--no-cover", action="store_true")
+    ap.add_argument("--check", action="store_true", help="only validate settings (placeholders) and exit")
     a = ap.parse_args()
+    check_config(BRAND_NAME=BRAND_NAME, BRAND_HANDLE=BRAND_HANDLE)
+    if a.check:
+        print("config OK"); return
     spec = load_json(a.shots); work = Path(a.work).resolve(); out = Path(a.out).resolve(); out.mkdir(parents=True, exist_ok=True)
     timing = load_json(work / "timing.json")
     if len(timing["lines"]) != len(spec["shots"]):

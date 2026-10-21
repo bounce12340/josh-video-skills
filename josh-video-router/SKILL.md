@@ -27,9 +27,14 @@ description: "Use first when asked to 「做一支影片／Reel」 (make a video
 
 Do not use: vox-director, book-sales-video, simon-skills, director for final output, hbg-classical-poem, kid-papercraft, or anything2explainer and video-talkcraft for final videos (reasons in ROUTER-PLAN.md).
 
+## Step 1b: Check the target skill exists
+Before handing off, confirm the chosen skill (and any script it names) is installed:
+`<SKILLS_DIR>/josh-video-router/scripts/check_skill.sh <skill> [path]`, e.g. `check_skill.sh huashu-art-motion templates/data_card_render.py`.
+If it is missing: fall back to stock-footage-reel when the topic fits it (narrated news or real footage); otherwise stop and ask the main bot. Do not install a third-party skill on your own.
+
 ## Step 2: Shared house rules (every video must meet them)
 - Traditional Chinese with Taiwan wording; use 「」 quotes; no em-dashes (—).
-- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Sarah Explains. Natural pace, no speed-up. Check credits with estimate_only first.
+- Voiceover: Chinese uses your own ElevenLabs voice `<YOUR_ELEVENLABS_VOICE_ID>`; English uses Josh's own English voice **Josh - Calm, Warm Taiwanese narrator** (voice_id `xBHPgy3hJ2fclZQIoDnv`, set as `ELEVENLABS_VOICE_ID_EN`), model eleven_multilingual_v2, about 1,800 characters of credit per video, `generations_count: 1`. Natural pace, no speed-up. Check credits with estimate_only first.
 - The voiceover reads the subtitles exactly: the final subtitle file is the single source, and on-screen subtitles are chunked from that same file.
 - News videos report only the news, with no first-person opinion from Josh unless he asks for it.
 - BGM: include it whenever possible; if used, note the track name, source, and license in facts.md; lacking it does not block the video.
@@ -42,7 +47,8 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 
 ## Step 3: Wrap-up
 1. `reel.sh mix` (when there is BGM) → `reel.sh qa` → `reel.sh ig`
-2. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+2. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md, x_post.txt, x_longpost.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+3. X drafts: `x_post.txt` (single post) and `x_longpost.md` (long post) go to X Launch Traction; Josh approves; then Grok Boss posts. Keep external links out of the post body and put them in a reply instead (per X API Engineer, a post with a link costs $0.20 vs $0.015 without). On X, the original-video link and credit required in Step 2 go in that reply.
 
 ## Step 4: Hand off to the fact editor
 - Notify the fact editor (事實編輯) to review `03-drafts/<題目>/`; the report goes in `04-review/<稿名>-review.md`.
@@ -58,3 +64,5 @@ Do not use: vox-director, book-sales-video, simon-skills, director for final out
 - **情報偵察員 (Scout)**: uses the decision table to attach a skill and style to each topic proposal (rule: [INDEX.md](../INDEX.md#topic-proposals-recommended-style-rule)).
 - **數據復盤師 (Analytics)**: tags each published video with the skill chosen in Step 1.
 - **Coding agent (Claude Code / Cursor)**: input: topic + sources; output: the chosen skill name, then the Step 3 deliverables. Never posts.
+
+Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AGENT-PLAYBOOK.md](../AGENT-PLAYBOOK.md).

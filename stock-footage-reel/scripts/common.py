@@ -23,6 +23,22 @@ LAYOUTS = {
 }
 
 
+PLACEHOLDER_MARKERS = ("<YOUR_", "@your_handle", "你的名字", "你的品牌")
+
+
+def check_config(**values):
+    """Stop with a clear message if any setting still holds a template placeholder.
+
+    Always checks COVERS_DIR and SFR_USER_AGENT; callers pass extra name=value pairs (e.g. BRAND_NAME)."""
+    values = {"COVERS_DIR": str(COVERS), "SFR_USER_AGENT": UA, **values}
+    bad = [f"  {k} = {v!r}" for k, v in values.items() if any(m in str(v) for m in PLACEHOLDER_MARKERS)]
+    if bad:
+        raise SystemExit("config error: these settings still use template placeholders:\n" + "\n".join(bad) +
+                         "\nSet them as environment variables (see README.md, 'Settings to fill in yourself'), e.g.\n"
+                         "  export BRAND_NAME='Josh｜AI 一人公司' BRAND_HANDLE='@bounce12340' COVERS_DIR=/path/to/covers \\\n"
+                         "         SFR_USER_AGENT='stock-footage-reel/1.0 (+https://your.site; low-volume, cached)'")
+
+
 def layout(fmt):
     if fmt not in LAYOUTS:
         raise SystemExit(f"format must be one of {list(LAYOUTS)}")
