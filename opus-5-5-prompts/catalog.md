@@ -1,16 +1,16 @@
-# Opus 5.5 影片 prompt 比對清單
+# Opus 5.5 video prompt comparison list
 
-來源：[yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos)（2026-10-21 抓取，共 703 筆）。本表不收 prompt 原文，只放標題、分類、作者原文連結和比對結果；要看 prompt 請點「prompt」連到來源 repo。
+Source: [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) (fetched 2026-10-21, 703 prompts in total). This table does not include prompt text; it lists only titles, categories, links to the author's original post, and comparison results. To read a prompt, click "prompt" to go to the source repo.
 
-比對方式：用關鍵字把每筆 prompt 對到本 repo 和 INDEX.md 已收的 skill／風格，屬自動初判，用之前請人工確認。
+Comparison method: keywords match each prompt to the skills / styles already in this repo and INDEX.md. This is an automatic first pass; check manually before use.
 
-- 重複：跟現有 skill 的某個風格相同或幾乎相同（括號寫是哪個），或來源 repo 內 prompt 重複。
-- 部分重疊：同一類流程（程式渲染動態圖形、解說、圖表）已有 skill，但沒有同款風格。
-- 新：本 repo 和 INDEX.md 都沒有對應（主要是 Three.js 3D、shader、可互動遊戲）。
+- 重複 (Duplicate): same or nearly the same as a style in an existing skill (named in parentheses), or a duplicate prompt within the source repo.
+- 部分重疊 (Partial overlap): a skill exists for the same kind of workflow (code-rendered motion graphics, explainers, charts), but not the same style.
+- 新 (New): no counterpart in this repo or INDEX.md (mainly Three.js 3D, shaders, interactive games).
 
-## 新（204）
+## 新 / New (204)
 
-| 標題 | 分類 | 技術 | 作者 | 對應現有 skill | 連結 |
+| Title | Category | Tech | Author | Matching existing skill | Links |
 |---|---|---|---|---|---|
 | Opus 5.5 video by @Acoramaa （prompt 不完整） | 3D 場景 | threejs, shader, svg, audio | [@Acoramaa](https://x.com/Acoramaa) | 無對應（Three.js／shader／互動遊戲類，本 repo 尚無） | [原貼文](https://x.com/Acoramaa/status/2104145227573248467)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/acoramaa-248467.md) |
 | Yohaku Short Film | 3D 場景 |  | [@AGIOyaZ](https://x.com/AGIOyaZ) | 無對應（Three.js／shader／互動遊戲類，本 repo 尚無） | [原貼文](https://x.com/AGIOyaZ/status/2103145567945986461)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/agioyaz-986461.md) |
@@ -217,9 +217,9 @@
 | Opus 5.5 video by @zhang_baoqing （prompt 不完整） | 動態圖形 | threejs, canvas, particles | [@zhang_baoqing](https://x.com/zhang_baoqing) | 無對應（Three.js／shader／互動遊戲類，本 repo 尚無） | [原貼文](https://x.com/zhang_baoqing/status/2104081777119920413)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/zhang-baoqing-920413.md) |
 | Opus 5.5 video by @zheke | 動態圖形 | shader, webgl, canvas, particles | [@zheke](https://x.com/zheke) | 無對應（Three.js／shader／互動遊戲類，本 repo 尚無） | [原貼文](https://x.com/zheke/status/2103418664854622583)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/zheke-622583.md) |
 
-## 部分重疊（375）
+## 部分重疊 / Partial overlap (375)
 
-| 標題 | 分類 | 技術 | 作者 | 對應現有 skill | 連結 |
+| Title | Category | Tech | Author | Matching existing skill | Links |
 |---|---|---|---|---|---|
 | Opus 5.5 video by @0xSolty （prompt 不完整） | 3D 場景 | shader, webgl | [@0xSolty](https://x.com/0xSolty) | OpenMontage Remotion 圖表／huashu data_card／lemo dataviz | [原貼文](https://x.com/0xSolty/status/2102888414219735200)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/0xsolty-735200.md) |
 | Opus 5.5 video by @0xWast3 （prompt 不完整） | 3D 場景 | threejs, shader | [@0xWast3](https://x.com/0xWast3) | OpenMontage Remotion 圖表／huashu data_card／lemo dataviz | [原貼文](https://x.com/0xWast3/status/2103513328077222104)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/0xwast3-222104.md) |
@@ -597,9 +597,9 @@
 | Opus 5.5 video by @zakisbuilding （prompt 不完整） | 動態圖形 | canvas | [@zakisbuilding](https://x.com/zakisbuilding) | lemo-opuscar／xilo-opus-video（程式渲染動態圖形，無同款風格） | [原貼文](https://x.com/zakisbuilding/status/2104389736647495680)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/zakisbuilding-495680.md) |
 | Agentic Analytics Startup | 動態圖形 |  | [@zigapoto](https://x.com/zigapoto) | lemo-opuscar／xilo-opus-video（程式渲染動態圖形，無同款風格） | [原貼文](https://x.com/zigapoto/status/2103746698660942208)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/zigapoto-942208.md) |
 
-## 重複（124）
+## 重複 / Duplicate (124)
 
-| 標題 | 分類 | 技術 | 作者 | 對應現有 skill | 連結 |
+| Title | Category | Tech | Author | Matching existing skill | Links |
 |---|---|---|---|---|---|
 | Crayon Piano Performance Animation | 3D 場景 |  | [@0xCodez](https://x.com/0xCodez) | hand-drawn-video-prompts／lemo crayon-book | [原貼文](https://x.com/0xCodez/status/2104257855142474136)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/0xcodez-474136.md) |
 | Opus 5.5 video by @aayush4soni （prompt 不完整） | 3D 場景 | threejs, canvas | [@aayush4soni](https://x.com/aayush4soni) | lemo-opuscar brick-toy | [原貼文](https://x.com/aayush4soni/status/2104181266459644283)・[prompt](https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/aayush4soni-644283.md) |

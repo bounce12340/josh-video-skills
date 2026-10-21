@@ -63,10 +63,11 @@ print(collections.Counter(r[2] for r in rows if r[1]=='重複' and not r[2].star
 CAT={'motion':'動態圖形','3d':'3D 場景','explainer':'解說','interactive':'遊戲／互動'}
 os.makedirs(os.path.dirname(os.path.abspath(__file__))+'',exist_ok=True)
 with open(os.path.dirname(os.path.abspath(__file__))+'/catalog.md','w') as f:
-    f.write('# Opus 5.5 影片 prompt 比對清單\n\n來源：[yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos)（2026-10-21 抓取，共 %d 筆）。本表不收 prompt 原文，只放標題、分類、作者原文連結和比對結果；要看 prompt 請點「prompt」連到來源 repo。\n\n比對方式：用關鍵字把每筆 prompt 對到本 repo 和 INDEX.md 已收的 skill／風格，屬自動初判，用之前請人工確認。\n\n- 重複：跟現有 skill 的某個風格相同或幾乎相同（括號寫是哪個），或來源 repo 內 prompt 重複。\n- 部分重疊：同一類流程（程式渲染動態圖形、解說、圖表）已有 skill，但沒有同款風格。\n- 新：本 repo 和 INDEX.md 都沒有對應（主要是 Three.js 3D、shader、可互動遊戲）。\n\n'%len(d))
+    f.write('# Opus 5.5 video prompt comparison list\n\nSource: [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) (fetched 2026-10-21, %d prompts in total). This table does not include prompt text; it lists only titles, categories, links to the author\'s original post, and comparison results. To read a prompt, click "prompt" to go to the source repo.\n\nComparison method: keywords match each prompt to the skills / styles already in this repo and INDEX.md. This is an automatic first pass; check manually before use.\n\n- 重複 (Duplicate): same or nearly the same as a style in an existing skill (named in parentheses), or a duplicate prompt within the source repo.\n- 部分重疊 (Partial overlap): a skill exists for the same kind of workflow (code-rendered motion graphics, explainers, charts), but not the same style.\n- 新 (New): no counterpart in this repo or INDEX.md (mainly Three.js 3D, shaders, interactive games).\n\n'%len(d))
+    EN={'新':'New','部分重疊':'Partial overlap','重複':'Duplicate'}
     for lab in ['新','部分重疊','重複']:
         sub=[r for r in rows if r[1]==lab]
-        f.write(f'## {lab}（{len(sub)}）\n\n| 標題 | 分類 | 技術 | 作者 | 對應現有 skill | 連結 |\n|---|---|---|---|---|---|\n')
+        f.write(f'## {lab} / {EN[lab]} ({len(sub)})\n\n| Title | Category | Tech | Author | Matching existing skill | Links |\n|---|---|---|---|---|---|\n')
         for x,_,m in sorted(sub,key=lambda r:(r[0]['category'],r[0]['slug'])):
             t=title(x['slug']).replace('|','／')
             p=' （prompt 不完整）' if x['prompt_partial'] else ''
