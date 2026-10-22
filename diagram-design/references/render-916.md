@@ -34,16 +34,18 @@ python3 <DIAGRAM_DESIGN_DIR>/scripts/export_png.py diagram01.html -o diagram01.p
 
 `<DIAGRAM_DESIGN_DIR>` is the upstream skill folder, by default `<SKILLS_DIR>/cathrynlavery-diagram-design/skills/diagram-design` (kept apart from this adapter folder, which has the same name; see SKILL.md Step 2).
 
-**Path B (fallback): a Playwright screenshot.** Reuses `screen-record`'s Playwright 1.64.0 (`cd <SKILLS_DIR>/screen-record && npm install` first, or set `NODE_PATH=<SKILLS_DIR>/screen-record/node_modules`):
+**Path B (fallback): a Playwright screenshot.** Reuses `screen-record`'s Playwright 1.64.0 (`cd <SKILLS_DIR>/screen-record && npm install && npx playwright install chromium` first). `NODE_PATH` does not work for an ES module, so the snippet resolves Playwright through `createRequire` and the `SR` env var:
 
 ```js
-// work/diagram_shot.mjs — node diagram_shot.mjs /abs/diagram01.html /abs/diagram01.png
-import { chromium } from 'playwright';
+// work/diagram_shot.mjs: SR=<SKILLS_DIR>/screen-record node diagram_shot.mjs /abs/diagram01.html /abs/diagram01.png
+import { createRequire } from 'node:module';
+const require = createRequire(process.env.SR + '/package.json'); // ESM ignores NODE_PATH
+const { chromium } = require('playwright');
 const [html, out] = process.argv.slice(2);
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 872, height: 960 }, deviceScaleFactor: 2 });
 await page.goto('file://' + html);
-await page.waitForTimeout(500);                      // 等字體載入
+await page.evaluate(() => document.fonts.ready);     // 等字體載入
 await page.locator('svg').first().screenshot({ path: out });
 await browser.close();
 ```

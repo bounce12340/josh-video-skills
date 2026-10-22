@@ -24,10 +24,10 @@ What makes its output look editorial rather than generic:
 
 - **No shadows.** No generic Mermaid styling.
 - **One accent color**, at most 2 focal elements per diagram; everything else uses the `ink` / `muted` / `soft` roles.
-- **Orthogonal connectors only** — rounded right-angle elbows, no diagonals; no overlapping strokes (parallel routes offset, bridge/hop at crossings); distinct fan-out attach points; arrow labels sit in a small opaque mask gap, max ~14 characters, never rotated vertically.
+- **Orthogonal connectors only**: rounded right-angle elbows, no diagonals; no overlapping strokes (parallel routes offset, bridge/hop at crossings); distinct fan-out attach points; arrow labels sit in a small opaque mask gap, max ~14 characters, never rotated vertically.
 - **4px grid**: every coordinate, width, and gap divisible by 4. Border radius ≤ 10px, 1px hairlines.
 - **Complexity budget**: about 9 nodes, 12 arrows, 2 callouts, 2 accent elements per diagram, with per-type limits; a "remove test" asks whether each node, arrow, and label could be deleted without losing meaning.
-- **Typography by role**: Instrument Serif titles, Geist sans node names, Geist Mono for technical content only (ports, URLs, commands) — never mono as a blanket font. **None of these cover CJK**, which is why the house plate specifies Noto Sans TC / Noto Serif TC.
+- **Typography by role**: Instrument Serif titles, Geist sans node names, Geist Mono for technical content only (ports, URLs, commands), never mono as a blanket font. **None of these cover CJK**, which is why the house plate specifies Noto Sans TC / Noto Serif TC.
 - **Accessible SVG**: `role="img"`, `aria-labelledby`, prefixed title/desc ids; WCAG AA text contrast.
 
 ## Size presets
