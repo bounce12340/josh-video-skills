@@ -20,6 +20,7 @@ description: "Use first when asked to 「做一支影片／Reel」 (make a video
 | Themed montage with no narration? | OpenMontage documentary-montage (read openmontage-house) |
 | Need to record a web page or tool being used? | screen-record (footage) → then stock-footage-reel or OpenMontage screen-demo |
 | Knowledge explainer, Vox style, art style, whiteboard, hand-drawn? | huashu-art-motion; use lemo-opuscar only for styles huashu lacks; use xilo-opus-video for a three-option preview |
+| How an AI agent works, a workflow, a system architecture, or a step-by-step process explainer (boxes and arrows, no numbers)? | diagram-design (house adapter; plates rendered per diagram-design/references/render-916.md, then voiceover + subtitles via stock-footage-reel or OpenMontage) |
 | Price, benchmark, or KPI comparison? | huashu templates/data_card_render.py |
 | Product promo? | video-shotcraft (must be re-laid out as vertical) |
 | Long video into shorts, translated dubbing, podcast? | OpenMontage (read openmontage-house) |
