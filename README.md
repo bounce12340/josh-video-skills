@@ -40,6 +40,8 @@ josh-video-skills/
 ├── diagram-design/          # House-rules adapter for diagram-design: editorial HTML + SVG diagrams as 9:16 frames
 │   ├── SKILL.md
 │   └── references/          # upstream.md (what the upstream skill does), render-916.md (HTML/SVG → 1080x1920)
+├── lemo-opuscar-house/      # House rules for lemo-opuscar's Oct 2026 news / evidence styles and MY-STYLES
+│   └── SKILL.md
 ├── openmontage-house/       # House-rules adapter layer for OpenMontage
 │   ├── SKILL.md
 │   └── scripts/om_clips.py
@@ -68,6 +70,7 @@ Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AG
 | stock-footage-reel | Narrated Reels edited from real footage (the default) | AI news, essays, pharma regulatory news, narrated stories |
 | screen-record | 1080x1920 recordings of public web pages, as footage | A tool or website has to be shown being used |
 | diagram-design | Editorial HTML + SVG diagram plates rendered as 9:16 frames | The topic explains a mechanism: how an agent works, a workflow, an architecture, a process |
+| lemo-opuscar-house | lemo-opuscar's Edit & Documentary and Evidence Films styles at 1080x1920 with ElevenLabs voices | Straight AI / startup news (Caption News), weekly roundups (Broadcast News Package), incident reconstructions (Visual Investigation) |
 | openmontage-house | OpenMontage pipelines run under the house rules | Long-to-short, podcasts, dubbing, screen tutorials, narration-free montage, archival footage |
 | x-scout | Topic proposals from recent X posts (read-only) | Looking for something to make |
 | analytics | Median metrics per skill / style from X exports | Reviewing what worked after publishing |
@@ -83,7 +86,7 @@ The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the 
    ```bash
    git clone https://github.com/bounce12340/josh-video-skills.git
    cd josh-video-skills
-   for s in josh-video-router interview-reel stock-footage-reel screen-record diagram-design openmontage-house x-scout; do
+   for s in josh-video-router interview-reel stock-footage-reel screen-record diagram-design lemo-opuscar-house openmontage-house x-scout; do
      cp -r "$s" ~/.claude/skills/
    done
    ```
@@ -146,7 +149,7 @@ A few files live in the author's own workspace and are **not included in this re
 | native-subtitle-quote-image | https://github.com/chengyi-ai/native-subtitle-quote-image | MIT |
 | simon-skills | https://github.com/trustfuture/simon-skills | MIT |
 | vox-director | https://github.com/Alisa0808/vox-director | MIT |
-| lemo-opuscar | https://github.com/lemomo-ai/lemo-opuscar | MIT |
+| lemo-opuscar (house notes for the Oct 2026 styles in `lemo-opuscar-house/`) | https://github.com/lemomo-ai/lemo-opuscar | Code MIT (Copyright (c) 2026 LemoLab); demo films and stills CC BY 4.0, credit LemoLab; three demo voice tracks are excluded and must not be reused |
 | impeccable | https://github.com/pbakaus/impeccable | Apache-2.0 |
 | video-shotcraft | https://github.com/Vincentwei1021/video-shotcraft | Apache-2.0 |
 | video-talkcraft | https://github.com/Vincentwei1021/video-talkcraft | PolyForm Noncommercial |
@@ -175,6 +178,7 @@ Files written for this repo are released under the [MIT License](LICENSE), Copyr
 - **總入口**：收到「做一支影片／Reel」時，先讀 `josh-video-router/SKILL.md`。它會依決策表判斷影片類型、轉給對應的 skill、套用共用的本家規則（台灣繁中、「」引號、不用破折號、配音照字幕念、不放品牌 logo、YouTube 來源要附原片連結），再交給事實編輯審稿。
 - **安裝**：把要用的 skill 資料夾複製到你的 skills 目錄（例如 `~/.claude/skills/`），建議跟第三方 skill（例如 OpenMontage）放在同一層。screen-record 要先 `npm install`。
 - **設定**：文件裡的 `<YOUR_ELEVENLABS_VOICE_ID>`、`<YOUR_VOICE_NAME>`、`<SKILLS_DIR>`、`<YOUR_WORKSPACE>`、`<YOUR_CONTACT_URL>` 要換成自己的值。金鑰只放環境變數，不要寫進檔案或 commit。
+- **lemo-opuscar 新風格**：`lemo-opuscar-house/` 整理了 LemoLab 的 lemo-opuscar 在 2026 年 10 月新增的「剪輯與紀實」（2026-10-22，8 種）和「實證影像」（2026-10-16，8 種）風格，以及「做成自己的風格」（MY-STYLES.md）。適合 AI 新聞用 Caption News、每週整理用 Broadcast News Package、事件重建用 Visual Investigation。上游預設 1920×1080，一律加 `--size 1080x1920` 並重新排版；配音改用 Josh 的 ElevenLabs 聲音，不用 Kokoro。程式碼是 MIT、示範影片是 CC BY 4.0，要標註 LemoLab；有三段示範配音不在授權內，不准拿來用。本 repo 沒有複製上游檔案，只放連結和摘要。
 - **圖解影片**：主題是在解釋一個機制（agent 怎麼運作、工作流程、系統架構、流程說明）時，用 `diagram-design/`。它是第三方 skill [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design)（MIT，Copyright (c) 2025 Cathryn Lavery）的本家規則轉接層：本 repo 一個檔案都沒有複製過來，只寫「什麼題目適合畫圖、要跟它要什麼（繁中要指定 Noto Sans TC，上游字體沒有中文字）、怎麼把 HTML/SVG 輸出成 1080x1920 影片幀、字幕安全區在哪」。上游 skill 的名字也叫 diagram-design，裝的時候要分開放，不要蓋在本 repo 這個資料夾上。
 - **第三方 skill**：都不在本 repo 內，各自保留原本的授權，清單見上方英文表格。
 - **使用注意**：發文前要本人確認；素材授權逐支確認；不要把聲音檔上傳到別的雲端，沒有本人同意不要複製別人的聲音。
