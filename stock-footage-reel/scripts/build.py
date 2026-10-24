@@ -10,11 +10,10 @@
 import argparse, json, math, os, re, subprocess, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from common import (check_config, layout, font, FONT_SANS, FONT_SERIF, GOLD, BRAND_RED, WHITE, COVERS, load_json, save_json,
-                    probe_duration)  # noqa
+from common import (check_config, layout, font, FONT_SANS, FONT_SERIF, FONT_EN, GOLD, BRAND_RED, WHITE, COVERS, load_json,
+                    save_json, probe_duration)  # noqa
 from PIL import Image, ImageDraw, ImageFilter
 
-FONT_EN = "/usr/share/fonts/truetype/sand-box/google/Noto Sans/NotoSans-VariableFont_wdth,wght.ttf"
 FPS = 30
 BRAND_NAME = os.environ.get("BRAND_NAME", "你的名字｜你的品牌")   # 品牌記號文字
 BRAND_HANDLE = os.environ.get("BRAND_HANDLE", "@your_handle")      # 片尾帳號
@@ -490,7 +489,8 @@ def main():
              "-vf", f"scale=1280:-2,{GRADES[grade].replace('noise=alls=12:allf=t+u,', 'noise=alls=8:allf=u,')}", "-q:v", "2", str(frame)])
         cv.update({"template": "B", "visual": str(frame), "out": str(out / "cover")})
         sp = out / "cover_spec.json"; save_json(sp, cv)
-        r = subprocess.run(["python3", str(COVERS / "render.py"), str(sp)], capture_output=True, text=True, cwd=str(COVERS))
+        r = subprocess.run([sys.executable, str(COVERS / "render.py"), str(sp)], capture_output=True, text=True,
+                           encoding="utf-8", cwd=str(COVERS))
         print(r.stdout.strip() or r.stderr[-800:])
     print(f"{final}  {probe_duration(final):.2f}s  {size:.1f} MB")
 

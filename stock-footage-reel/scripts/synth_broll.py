@@ -8,7 +8,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageDraw, ImageFont
 
-MONO = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+MONO = next((p for p in ("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", "C:/Windows/Fonts/consola.ttf")
+             if Path(p).exists()), "DejaVuSansMono.ttf")
 CODE = '''class AgentPolicy:
     def __init__(self, scopes, audit_log):
         self.scopes = set(scopes)

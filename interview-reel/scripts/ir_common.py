@@ -6,11 +6,10 @@ SKILL = Path(__file__).resolve().parent.parent
 SKILLS_DIR = Path(os.environ.get("SKILLS_DIR", Path(__file__).resolve().parents[2]))  # 放所有 skill 的資料夾
 SFR = SKILLS_DIR / "stock-footage-reel" / "scripts"
 sys.path.insert(0, str(SFR))
-from common import (font, FONT_SANS, FONT_SERIF, COVERS, load_json, save_json, probe_duration, download,  # noqa
+from common import (font, FONT_SANS, FONT_SERIF, FONT_EN, COVERS, load_json, save_json, probe_duration, download,  # noqa
                     http_get, WHITE, BRAND_RED, check_config)
 
 CACHE = SKILL / "cache"
-FONT_EN = "/usr/share/fonts/truetype/sand-box/google/Noto Sans/NotoSans-VariableFont_wdth,wght.ttf"
 FPS = 30
 W, H = 1080, 1920
 YELLOW = (255, 214, 10)      # 字幕重點字（D／E 新聞風同一個黃 #FFD60A）

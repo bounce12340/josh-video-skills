@@ -539,7 +539,8 @@ def main():
         if cv["template"].upper() == "B": cv.setdefault("clip_credit", f"畫面：{ch} 官方影片")
         else: cv.setdefault("credit", f"畫面：{ch} 官方影片")
         sp = out / "cover_spec.json"; save_json(sp, cv)
-        r = subprocess.run(["python3", str(COVERS / "render.py"), str(sp)], capture_output=True, text=True, cwd=str(COVERS))
+        r = subprocess.run([sys.executable, str(COVERS / "render.py"), str(sp)], capture_output=True, text=True,
+                           encoding="utf-8", cwd=str(COVERS))
         print(r.stdout.strip() or r.stderr[-800:])
     print(f"{final}  {probe_duration(final):.2f}s  {size:.1f} MB  | preview {prev.stat().st_size/1e6:.1f} MB | 原聲占 {share:.0%}")
 

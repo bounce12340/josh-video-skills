@@ -9,7 +9,7 @@ description: "Use first when asked to 「做一支影片／Reel」 (make a video
 ## Step 0: Read the house rules first
 - Voice and wording: `<YOUR_WORKSPACE>/media-team/00-profile/voice.md`
 - Motion rules: `<YOUR_WORKSPACE>/media-team/00-profile/motion-contract.md`
-- Covers: `<YOUR_WORKSPACE>/media-team/covers/README.md`
+- Covers: this repo's `covers/README.md` (`COVERS_DIR`)
 
 ## Step 1: Decide the type (decision table)
 
@@ -47,8 +47,9 @@ If it is missing: fall back to stock-footage-reel when the topic fits it (narrat
 
 ## Step 3: Wrap-up
 1. `reel.sh mix` (when there is BGM) → `reel.sh qa` → `reel.sh ig`
-2. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md, x_post.txt, x_longpost.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
-3. X drafts: `x_post.txt` (single post) and `x_longpost.md` (long post) go to X Launch Traction; Josh approves; then Grok Boss posts. Keep external links out of the post body and put them in a reply instead (per X API Engineer, a post with a link costs $0.20 vs $0.015 without). On X, the original-video link and credit required in Step 2 go in that reply.
+2. Covers: every build writes 3 to 6 cover options to `cover_options/` with `compare_reel.png` and `compare_post.png`. Deliver both comparison sheets with the drafts and let Josh pick; then run `render.py cover_spec.json --pick <code>` to make his pick the main cover. Never pick for him.
+3. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md, x_post.txt, x_longpost.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+4. X drafts: `x_post.txt` (single post) and `x_longpost.md` (long post) go to X Launch Traction; Josh approves; then Grok Boss posts. Keep external links out of the post body and put them in a reply instead (per X API Engineer, a post with a link costs $0.20 vs $0.015 without). On X, the original-video link and credit required in Step 2 go in that reply.
 
 ## Step 4: Hand off to the fact editor
 - Notify the fact editor (事實編輯) to review `03-drafts/<題目>/`; the report goes in `04-review/<稿名>-review.md`.

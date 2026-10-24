@@ -8,3 +8,7 @@ __pycache__/
 *.mp4
 *.mp3
 *.wav
+
+# covers: fonts are downloaded by covers/fetch_fonts.py; samples are local test renders
+covers/fonts/
+covers/samples/
