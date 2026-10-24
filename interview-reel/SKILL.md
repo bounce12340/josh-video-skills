@@ -12,7 +12,7 @@ Josh approved on 2026-10-12: celebrity interviews use the Fox style, with commen
 - Example spec: `examples/mcp_test.spec.json` (Anthropic's official MCP interview, test clip)
 - Reference output: `<YOUR_WORKSPACE>/media-team/03-drafts/interview-reel-test/test.mp4`
 - Reference videos: `<YOUR_WORKSPACE>/refs/ig-DeWJjxJyoEb/` (Fox Hsiao, Musk Terafab, the format to learn), `<YOUR_WORKSPACE>/refs/ig-DWVQfDmE41Z/` (AI郵報, Jensen Huang, original audio only, the simplest; don't copy its lack of source labels)
-- Reused: stock-footage-reel's common.py (fonts, downloads), synth_music.py (original music), Pexels cache; OpenMontage's venv (faster-whisper, yt-dlp) and `elevenlabs_tts`; covers via `<YOUR_WORKSPACE>/media-team/00-profile/covers/render.py`.
+- Reused: stock-footage-reel's common.py (fonts, downloads), synth_music.py (original music), Pexels cache; OpenMontage's venv (faster-whisper, yt-dlp) and `elevenlabs_tts`; covers via `covers/render.py` (`COVERS_DIR`; 3 to 6 options, see covers/README.md).
 
 ## Format (broken down from the Fox Hsiao video)
 | Segment | Visuals | Audio |

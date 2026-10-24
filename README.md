@@ -22,6 +22,10 @@ josh-video-skills/
 ├── INDEX.md                 # Index and decision table of all video skills (including third-party)
 ├── AGENT-PLAYBOOK.md        # How agents run the skills: preflight, gates, costs, failures, done
 ├── ROUTER-PLAN.md           # Integration plan: inventory, keep / retire, rule conflicts
+├── covers/                  # Cover generator: 6 templates, 3 to 6 options per video + comparison sheet
+│   ├── README.md
+│   ├── render.py
+│   └── fetch_fonts.py       # downloads the Noto fonts into covers/fonts/ (not committed)
 ├── josh-video-router/       # Main entry point (router)
 │   └── SKILL.md
 ├── interview-reel/          # Celebrity interview / talk clip Reels (commentary intercut with original audio)
@@ -74,8 +78,10 @@ The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the 
    ```
 
 3. `<SKILLS_DIR>` in the docs means the single folder holding all skills (including third-party ones such as OpenMontage). Scripts look for `stock-footage-reel/` and `OpenMontage/` one level above the skill folder by default, so keeping them all at the same level is recommended.
-4. screen-record needs its Node dependencies first: `cd screen-record && npm install`.
-5. Install third-party skills as needed (see "Third-party skills" below); interview-reel and openmontage-house in particular use OpenMontage.
+4. screen-record needs its Node dependencies first: `cd screen-record && npm install && npx playwright install chromium`.
+5. Download the cover and subtitle fonts: `python covers/fetch_fonts.py` (needs Pillow: `pip install pillow`).
+6. On Windows, run the Python scripts with `py` (the `python3` in WindowsApps is only a Store stub). The build scripts call covers/render.py with the same interpreter and fall back to the fonts in `covers/fonts/` when the Linux system fonts are missing.
+7. Install third-party skills as needed (see "Third-party skills" below); interview-reel and openmontage-house in particular use OpenMontage.
 
 ## Settings to fill in yourself
 
@@ -89,7 +95,7 @@ Placeholders in the docs:
 | `<YOUR_WORKSPACE>` | Your working folder (drafts, covers, voice file, etc.) |
 | `<YOUR_CONTACT_URL>` | The contact URL left in the User-Agent when fetching footage |
 
-Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, `COVERS_DIR`, and `SFR_USER_AGENT` must be set before building: the build scripts (and `--check`) stop with a clear error if they still hold template placeholders.
+Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, and `SFR_USER_AGENT` must be set before building: the build scripts (and `--check`) stop with a clear error if they still hold template placeholders.
 
 | Environment variable | Purpose |
 |---|---|
@@ -97,7 +103,8 @@ Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, `COVERS
 | `SKILLS_DIR` | Skills root; defaults to one level above the script's skill |
 | `OPENMONTAGE_DIR` | OpenMontage location; defaults to `<SKILLS_DIR>/OpenMontage` |
 | `NODE_BIN_DIR` | Node bin folder, when you need a specific Node version |
-| `COVERS_DIR` | Folder with the cover `render.py` and `fonts/` (Noto Sans TC / Noto Serif TC) |
+| `COVERS_DIR` | Folder with the cover `render.py` and `fonts/` (Noto Sans TC / Noto Serif TC / Noto Sans); defaults to this repo's `covers/` |
+| `COVER_VARIANTS` | How many cover options each build writes, 3 to 6 (default 6); a spec's `cover.variants` overrides it |
 | `BRAND_NAME`, `BRAND_HANDLE` | Brand mark text on the video and the end-card handle |
 | `ELEVENLABS_VOICE_ID_EN` | English voiceover voice_id for interview-reel's tts.py (Josh: `xBHPgy3hJ2fclZQIoDnv`) |
 | `SFR_USER_AGENT`, `SFR_CACHE` | stock-footage-reel's User-Agent and cache location |
@@ -105,7 +112,7 @@ Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, `COVERS
 
 English voiceover (since 2026-10-20) uses Josh's own ElevenLabs voice "Josh - Calm, Warm Taiwanese narrator" (voice_id `xBHPgy3hJ2fclZQIoDnv`, model `eleven_multilingual_v2`; Josh confirmed it is his voice and approved its use). Scripts read it from the `ELEVENLABS_VOICE_ID_EN` environment variable (no voice_id is hard-coded); a spec's `voice_id` overrides it. Budget about 1,800 characters of credit per video and always use `generations_count: 1`. If you fork this repo, use your own voice.
 
-A few files live in the author's own workspace and are **not included in this repo**; prepare your own or drop the related steps: the cover generator `covers/render.py` and fonts, the voice file `voice.md`, the motion rules `motion-contract.md`, and the wrap-up script `video-pipeline/reel.sh`.
+A few files live in the author's own workspace and are **not included in this repo**; prepare your own or drop the related steps: the voice file `voice.md`, the motion rules `motion-contract.md`, and the wrap-up script `video-pipeline/reel.sh`.
 
 ## Third-party skills (not included; get them from the original repos)
 
@@ -156,7 +163,7 @@ Files written for this repo are released under the [MIT License](LICENSE), Copyr
 這是 Josh（[@bounce12340](https://www.threads.com/@bounce12340)）內容團隊自己寫的影片 skill 整合包，用來做直式短影音（IG Reel、YouTube Shorts、TikTok）。所有 skill 都只做草稿，不會自動發文。
 
 - **總入口**：收到「做一支影片／Reel」時，先讀 `josh-video-router/SKILL.md`。它會依決策表判斷影片類型、轉給對應的 skill、套用共用的本家規則（台灣繁中、「」引號、不用破折號、配音照字幕念、不放品牌 logo、YouTube 來源要附原片連結），再交給事實編輯審稿。
-- **安裝**：把要用的 skill 資料夾複製到你的 skills 目錄（例如 `~/.claude/skills/`），建議跟第三方 skill（例如 OpenMontage）放在同一層。screen-record 要先 `npm install`。
+- **安裝**：把要用的 skill 資料夾複製到你的 skills 目錄（例如 `~/.claude/skills/`），建議跟第三方 skill（例如 OpenMontage）放在同一層。screen-record 要先 `npm install`。封面字型用 `python covers/fetch_fonts.py` 下載；每次出片會產生 3 到 6 款封面選項給你挑（見 covers/README.md）。
 - **設定**：文件裡的 `<YOUR_ELEVENLABS_VOICE_ID>`、`<YOUR_VOICE_NAME>`、`<SKILLS_DIR>`、`<YOUR_WORKSPACE>`、`<YOUR_CONTACT_URL>` 要換成自己的值。金鑰只放環境變數，不要寫進檔案或 commit。
 - **第三方 skill**：都不在本 repo 內，各自保留原本的授權，清單見上方英文表格。
 - **使用注意**：發文前要本人確認；素材授權逐支確認；不要把聲音檔上傳到別的雲端，沒有本人同意不要複製別人的聲音。

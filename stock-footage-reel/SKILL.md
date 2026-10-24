@@ -26,7 +26,7 @@ Reference output: `<YOUR_WORKSPACE>/media-team/03-drafts/stock-footage-test/test
 ## Environment
 - Pexels: `PEXELS_API_KEY` is set as an environment variable (**do not print it**). Pixabay needs `PIXABAY_API_KEY` (not available yet).
 - ASR timing: `uv run --with faster-whisper` (downloads packages on first run, cached afterward).
-- Fonts: Noto Sans TC / Noto Serif TC in `<YOUR_WORKSPACE>/media-team/00-profile/covers/fonts/`. English uses Noto Sans.
+- Fonts: Noto Sans TC / Noto Serif TC in `covers/fonts/` (`covers/fetch_fonts.py`). English uses Noto Sans.
 - Footage cache: `$S/../stock-footage-reel/cache/` (the same clip is never re-downloaded).
 
 ## Workflow
@@ -98,7 +98,7 @@ python3 $S/scripts/fetch_footage.py --shots shots.json --work . --timing timing.
 python3 $S/scripts/build.py --shots shots.json --work . --out .. --name reel --plan   # 先看字幕段落
 python3 $S/scripts/build.py --shots shots.json --work . --out .. --name reel
 ```
-Output (in `--out`): `reel.mp4` (H.264 / AAC, 30fps, automatically re-encoded at a lower bitrate if over 45 MB), `contact_sheet.jpg` (one middle frame per chunk + end card), `credits.json` (with `credit_line` and `caption_credits` for the post), `cover_reel.png`, `cover_post.png` (B clipping-style Vox template, via `<YOUR_WORKSPACE>/media-team/00-profile/covers/render.py`).
+Output (in `--out`): `reel.mp4` (H.264 / AAC, 30fps, automatically re-encoded at a lower bitrate if over 45 MB), `contact_sheet.jpg` (one middle frame per chunk + end card), `credits.json` (with `credit_line` and `caption_credits` for the post), `cover_reel.png`, `cover_post.png` (B clipping-style Vox template, via `covers/render.py` (`COVERS_DIR`; 3 to 6 options, see covers/README.md)).
 
 Visual spec (matched to AYi's original videos):
 - Hard cuts, 2 to 4.5 seconds each, slow horizontal pan. Archival: magenta cast, soft focus, grain, vignette. Modern: darkened, teal-blue cast, desaturated, vignette.

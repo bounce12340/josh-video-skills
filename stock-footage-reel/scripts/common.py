@@ -4,9 +4,12 @@ from pathlib import Path
 
 SKILL = Path(__file__).resolve().parent.parent
 CACHE = Path(os.environ.get("SFR_CACHE", SKILL / "cache"))
-COVERS = Path(os.environ.get("COVERS_DIR", "<YOUR_WORKSPACE>/covers"))  # 放封面 render.py 和 fonts/ 的資料夾
+COVERS = Path(os.environ.get("COVERS_DIR", SKILL.parent / "covers"))  # 放封面 render.py 和 fonts/ 的資料夾，預設用 repo 裡的 covers/
 FONT_SANS = str(COVERS / "fonts" / "NotoSansTC[wght].ttf")
 FONT_SERIF = str(COVERS / "fonts" / "NotoSerifTC[wght].ttf")
+# 英文字型：沙盒有系統 Noto Sans 就用，否則用 covers/fonts/（covers/fetch_fonts.py 下載）
+_FONT_EN_SYS = "/usr/share/fonts/truetype/sand-box/google/Noto Sans/NotoSans-VariableFont_wdth,wght.ttf"
+FONT_EN = _FONT_EN_SYS if os.path.exists(_FONT_EN_SYS) else str(COVERS / "fonts" / "NotoSans[wdth,wght].ttf")
 UA = os.environ.get("SFR_USER_AGENT", "stock-footage-reel/1.0 (+<YOUR_CONTACT_URL>; low-volume, cached)")
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
 
