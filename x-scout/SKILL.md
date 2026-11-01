@@ -5,6 +5,8 @@ description: "Read-only X topic watcher for 情報偵察員 (Scout): search rece
 
 # x-scout: read-only X topic watcher
 
+Sibling: [threads-scout](../threads-scout/SKILL.md) runs the same classification on public Threads posts (it imports this script's `classify()` and `SUGGEST`, so keep them stable).
+
 **Read-only.** It never posts, likes, follows, replies, or sends DMs. Its only network call is a GET to X API v2 recent search. Topic proposals go to Grok Boss; the router decides the final skill.
 
 ## Credentials

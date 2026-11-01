@@ -1,0 +1,262 @@
+{
+ "media": [
+  {
+   "id": "th1",
+   "media_type": "VIDEO",
+   "permalink": "https://www.threads.com/@example/post/T1",
+   "timestamp": "2026-10-20T11:19:00+0000"
+  },
+  {
+   "id": "th2",
+   "media_type": "TEXT_POST",
+   "permalink": "https://www.threads.com/@example/post/T2",
+   "timestamp": "2026-10-24T11:19:00+0000"
+  },
+  {
+   "id": "th3",
+   "media_type": "VIDEO",
+   "permalink": "https://www.threads.com/@example/post/T3",
+   "timestamp": "2026-10-27T11:19:00+0000"
+  },
+  {
+   "id": "th4",
+   "media_type": "VIDEO",
+   "permalink": "https://www.threads.com/@example/post/T4",
+   "timestamp": "2026-10-31T11:19:00+0000"
+  }
+ ],
+ "insights": {
+  "th1": {
+   "data": [
+    {
+     "name": "views",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 5200
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 140
+      }
+     ]
+    },
+    {
+     "name": "replies",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 22
+      }
+     ]
+    },
+    {
+     "name": "reposts",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 9
+      }
+     ]
+    },
+    {
+     "name": "quotes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 3
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 31
+      }
+     ]
+    }
+   ]
+  },
+  "th2": {
+   "data": [
+    {
+     "name": "views",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 1800
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 40
+      }
+     ]
+    },
+    {
+     "name": "replies",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 6
+      }
+     ]
+    },
+    {
+     "name": "reposts",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 1
+      }
+     ]
+    },
+    {
+     "name": "quotes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 0
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 4
+      }
+     ]
+    }
+   ]
+  },
+  "th3": {
+   "data": [
+    {
+     "name": "views",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 9100
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 310
+      }
+     ]
+    },
+    {
+     "name": "replies",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 48
+      }
+     ]
+    },
+    {
+     "name": "reposts",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 20
+      }
+     ]
+    },
+    {
+     "name": "quotes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 7
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 95
+      }
+     ]
+    }
+   ]
+  },
+  "th4": {
+   "data": [
+    {
+     "name": "views",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 600
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 12
+      }
+     ]
+    },
+    {
+     "name": "replies",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 1
+      }
+     ]
+    },
+    {
+     "name": "reposts",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 0
+      }
+     ]
+    },
+    {
+     "name": "quotes",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 0
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "period": "lifetime",
+     "values": [
+      {
+       "value": 2
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

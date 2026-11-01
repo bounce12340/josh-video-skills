@@ -1,0 +1,181 @@
+{
+ "media": [
+  {
+   "id": "ig1",
+   "media_type": "VIDEO",
+   "media_product_type": "REELS",
+   "permalink": "https://www.instagram.com/reel/EX1/",
+   "timestamp": "2026-10-20T11:19:00+0000"
+  },
+  {
+   "id": "ig2",
+   "media_type": "VIDEO",
+   "media_product_type": "REELS",
+   "permalink": "https://www.instagram.com/reel/EX2/",
+   "timestamp": "2026-10-24T11:19:00+0000"
+  },
+  {
+   "id": "ig3",
+   "media_type": "CAROUSEL_ALBUM",
+   "media_product_type": "FEED",
+   "permalink": "https://www.instagram.com/p/EX3/",
+   "timestamp": "2026-10-26T11:19:00+0000"
+  }
+ ],
+ "insights": {
+  "ig1": {
+   "data": [
+    {
+     "name": "views",
+     "values": [
+      {
+       "value": 12000
+      }
+     ]
+    },
+    {
+     "name": "reach",
+     "values": [
+      {
+       "value": 8000
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "values": [
+      {
+       "value": 400
+      }
+     ]
+    },
+    {
+     "name": "comments",
+     "values": [
+      {
+       "value": 20
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "values": [
+      {
+       "value": 160
+      }
+     ]
+    },
+    {
+     "name": "saved",
+     "values": [
+      {
+       "value": 90
+      }
+     ]
+    },
+    {
+     "name": "ig_reels_avg_watch_time",
+     "values": [
+      {
+       "value": 14500
+      }
+     ]
+    }
+   ]
+  },
+  "ig2": {
+   "data": [
+    {
+     "name": "views",
+     "values": [
+      {
+       "value": 4000
+      }
+     ]
+    },
+    {
+     "name": "reach",
+     "values": [
+      {
+       "value": 3100
+      }
+     ]
+    },
+    {
+     "name": "likes",
+     "values": [
+      {
+       "value": 90
+      }
+     ]
+    },
+    {
+     "name": "comments",
+     "values": [
+      {
+       "value": 4
+      }
+     ]
+    },
+    {
+     "name": "shares",
+     "values": [
+      {
+       "value": 12
+      }
+     ]
+    },
+    {
+     "name": "saved",
+     "values": [
+      {
+       "value": 15
+      }
+     ]
+    },
+    {
+     "name": "ig_reels_avg_watch_time",
+     "values": [
+      {
+       "value": 9800
+      }
+     ]
+    }
+   ]
+  },
+  "ig3": {
+   "data": [
+    {
+     "name": "views",
+     "total_value": {
+      "value": 2500
+     }
+    },
+    {
+     "name": "reach",
+     "total_value": {
+      "value": 1900
+     }
+    },
+    {
+     "name": "likes",
+     "total_value": {
+      "value": 70
+     }
+    },
+    {
+     "name": "shares",
+     "total_value": {
+      "value": 8
+     }
+    },
+    {
+     "name": "saved",
+     "total_value": {
+      "value": 40
+     }
+    }
+   ]
+  }
+ }
+}
