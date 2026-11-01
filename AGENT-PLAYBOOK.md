@@ -19,6 +19,7 @@ Stop before starting if any required item is missing, and report what is missing
 | threads-scout | topics.json (plain keywords), x-scout installed at the same level | `THREADS_ACCESS_TOKEN` env var with `threads_keyword_search` approved (or `--input` file) |
 | analytics/style_compare.py | Metrics CSV (X export or meta_insights.py output), `analytics/style_tags.csv` rows with `platform` | Column names (`--id-col`, `--metrics`); `--platform` when tags mix platforms |
 | analytics/meta_insights.py | Platform, date range | `IG_ACCESS_TOKEN` + `IG_USER_ID`, or `THREADS_ACCESS_TOKEN` (insights scopes) as env vars |
+| analytics/queue_to_tags.py | `publish-queue.md` with the draft folder, posting date, and live post URL per platform | meta_insights.py CSVs for IG / Threads (media ids); dry run before `--apply` |
 | copy_lint.py (router) | The draft folder with ig_caption.txt, threads.txt, x_post.txt | Python 3 only; no ERROR before handoff |
 
 All skills: the source must be traceable (URL + author + date in facts.md / credits), and secrets come from environment variables only.
@@ -89,7 +90,7 @@ Send these to 事實編輯 (Fact Editor) and then to Grok Boss:
 1. Draft path (`03-drafts/<題目>/`) and final file name, duration, size.
 2. Viral score (x/14), naming which of the 7 points it hits and which it misses (e.g. P1 takeaway, P2 real numbers, P6 search term, P8 different template).
 3. Source list: URLs, authors, dates; footage and music licenses.
-4. Recommended style plus a one-line reason (the [recommended-style rule](INDEX.md#topic-proposals-recommended-style-rule)).
+4. Recommended style plus a one-line reason; also write `skill: <skill>` and `style: <style>` lines into `handoff.md` so `queue_to_tags.py` can tag the post after it goes live (the [recommended-style rule](INDEX.md#topic-proposals-recommended-style-rule)).
 5. Open questions: unverifiable facts, lines to audition, anything Josh must decide.
 
 ## 7. Never do

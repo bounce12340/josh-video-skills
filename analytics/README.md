@@ -18,7 +18,28 @@ Used by 數據復盤師 (Analytics).
 | `posted_at` | Date posted (Asia/Taipei) |
 | `notes` | Free text |
 
-Add the row when the post goes live. x-scout / threads-scout's suggested style can be the starting value; correct it to what was actually used.
+Rows come from `publish-queue.md` with `queue_to_tags.py` (below); add a row by hand only for a post the queue doesn't list. x-scout / threads-scout's suggested style can be the starting value; correct it to what was actually used.
+
+## Fill style_tags.csv from publish-queue.md
+`queue_to_tags.py` reads `<YOUR_WORKSPACE>/media-team/00-profile/publish-queue.md` and writes one tag row per published post URL.
+
+```bash
+# 1. pull insights first: IG and Threads URLs don't contain the media id, the insights CSV maps them
+python3 analytics/meta_insights.py --platform instagram --since 2026-10-01 --out ig.csv
+python3 analytics/meta_insights.py --platform threads --since 2026-10-01 --out threads.csv
+# 2. dry run: shows ready rows and pending rows with the reason
+python3 analytics/queue_to_tags.py --queue <YOUR_WORKSPACE>/media-team/00-profile/publish-queue.md \
+  --drafts-dir <YOUR_WORKSPACE>/media-team/03-drafts --insights ig.csv --insights threads.csv --pending-out pending.csv
+# 3. append the ready rows (never edits or duplicates existing rows; safe to re-run every week)
+python3 analytics/queue_to_tags.py ... --apply
+```
+
+What the queue needs (the parser is tolerant, but these three things must be there):
+- **The draft folder** (`03-drafts/<題目>` or the `YYYY-MM-DD-slug` folder name), on the URL's line or on a heading above it.
+- **The live post URL** for each platform once it is posted: `instagram.com/reel/...`, `threads.com/@.../post/...`, `x.com/.../status/...`.
+- **The posting date** (`YYYY-MM-DD`) on the URL's line or the folder's line.
+
+Skill and style come from an existing tag row for the same video, else from a `skill:` / `style:` (or `技能：` / `風格：`) line in that draft's `handoff.md`, `facts.md`, or `storyboard.md`. When neither has them the row stays in `pending.csv` for 數據復盤師 to fill; nothing is guessed. `examples/publish_queue_sample.md` shows both a heading-per-video layout and a table layout (fictional data).
 
 ## Pull Instagram and Threads insights
 ```bash
