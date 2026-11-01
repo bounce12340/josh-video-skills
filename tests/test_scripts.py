@@ -174,7 +174,8 @@ class CopyLint(Base):
         self.assertIn("invisible character", out)
         self.assertIn("post 2/2", out)
         self.assertIn("external link in the X post body", out)
-        en = out.split("en/ig_caption.txt")[1].split("==")[0]
+        # find the en/ caption's section by its label, not its path: Windows prints en\ig_caption.txt
+        en = next(s for s in out.split("== ") if "[instagram, en]" in s)
         self.assertNotIn("invisible", en)                     # ZWJ inside an emoji is legitimate
         self.assertNotIn("double quotes", en)                 # en/ skips Chinese-only checks
 
