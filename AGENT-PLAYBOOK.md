@@ -50,6 +50,7 @@ Use only these documented figures. Anything else counts as **unknown**: say "cos
 | X post with an external link | $0.20 vs $0.015 without a link | X API Engineer (router Step 3) |
 | Threads keyword search (threads-scout) | Free; 2,200 queries per user per rolling 24 h, shared across all apps, repeats count again | [references/meta-platforms.md](references/meta-platforms.md) |
 | IG / Threads insights (meta_insights.py) | Free; one request per post, so keep `--limit` small and run weekly | Meta docs (same file) |
+| Instagram API publishing (not used today; posting is manual) | Team cap 50 posts per 24 h: Meta's page says both 50 and 100, Josh chose the lower figure (2026-11-01) | references/meta-platforms.md |
 | Pexels, Wikimedia, Prelinger, Playwright, OpenMontage local tools | Free | licenses.md, SKILL.md files |
 | Paid generation (Kling, Veo, Seedance, FLUX, Atlas Cloud…) | Unknown / no keys set; requires Josh | openmontage-house SKILL.md |
 
@@ -65,7 +66,7 @@ Check ElevenLabs credits with `estimate_only` (router) or `tts.py --dry-run` (in
 | File over 45 MB | Retry | build.py re-encodes at lower bitrate automatically; else `video-pipeline/reel.sh ig`; confirm with `ffprobe` |
 | Missing skill or script | Fall back or report | `check_skill.sh` fails → stock-footage-reel if the topic fits; otherwise stop and ask the main bot. Don't install third-party skills on your own |
 | Placeholder settings | Report | `build.py --check` error lists the env vars to set |
-| threads-scout returns only Josh's own posts | Report | `threads_keyword_search` is not approved for the app; requesting it is Josh's call. Use x-scout meanwhile |
+| threads-scout returns only Josh's own posts | Expected for now | `threads_keyword_search` is not requested (Josh, 2026-11-01). Use x-scout; don't report it again unless Josh changes this |
 | Meta insights metric rejected / token expired | Report | `meta_insights.py` warns per post: pass current names with `--metrics`; an auth error stops the run. Never paste a token into a file to fix it |
 | copy_lint.py ERROR | Fix | Rewrite the line (never shorten by dropping the source credit); `--fix-invisible` removes invisible characters only |
 

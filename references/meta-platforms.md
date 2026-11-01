@@ -16,7 +16,7 @@ Labels: **official** = Meta's or X's developer docs. **reported** = trade press 
 | Carousel | 2 to 20 items, counts as one post | official | same |
 | Publishing cap | 250 posts per profile per 24 h | official | same |
 | Keyword search | `GET /keyword_search`, `q`, `search_type` TOP/RECENT, `search_mode` KEYWORD/TAG, `media_type`, `since`, `until`, `limit` ≤ 100, `author_username` | official | [Keyword search](https://developers.facebook.com/docs/threads/keyword-search) |
-| Keyword search permission | `threads_basic` + `threads_keyword_search`; **without approval it silently searches only the token owner's own posts** | official | same |
+| Keyword search permission | `threads_basic` + `threads_keyword_search`; **without approval it silently searches only the token owner's own posts**. Team status (Josh, 2026-11-01): not requested for now | official | same |
 | Keyword search quota | 2,200 queries per user per rolling 24 h, shared across all apps; repeats count; empty results don't | official | same |
 | Sensitive keywords | return an empty list, not an error | official | same |
 | Post insights | `views` (in development), `likes`, `replies`, `reposts`, `quotes`, `shares` (in development) | official | [Threads insights](https://developers.facebook.com/docs/threads/insights) |
@@ -31,8 +31,8 @@ Labels: **official** = Meta's or X's developer docs. **reported** = trade press 
 | Reels insights | `views`, `reach`, `likes`, `comments`, `shares`, `saved`, `total_interactions`, `ig_reels_avg_watch_time`, `ig_reels_video_view_total_time`, `reels_skip_rate`, `reposts`, `crossposted_views`, `facebook_views`, and others | official | same |
 | `impressions` | deprecated for media created after 2024-07-02 | official | same |
 | Insights permissions | `instagram_basic` + `instagram_manage_insights` (Facebook Login; may also need `pages_read_engagement`), or `instagram_business_basic` + `instagram_business_manage_insights` (Instagram Login) | official | same |
-| API publishing cap | the page states both 100 and 50 posts per 24 h; check `GET /<IG_ID>/content_publishing_limit` | official, inconsistent | [Content publishing](https://developers.facebook.com/docs/instagram-platform/content-publishing) |
-| Hashtags per caption | 5, "gradually" rolling out from 2025-12-18 (older Help Center pages still say 30) | reported | [Social Media Today, 2025-12-18](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/) |
+| API publishing cap | the page states both 100 and 50 posts per 24 h; check `GET /<IG_ID>/content_publishing_limit`. **Team rule (Josh, 2026-11-01): use 50 per 24 h** until Meta reconciles the page | official, inconsistent | [Content publishing](https://developers.facebook.com/docs/instagram-platform/content-publishing) |
+| Hashtags per caption | 5, "gradually" rolling out from 2025-12-18 (older Help Center pages still say 30). **Team rule (Josh, 2026-11-01): WARN only, don't block**, until an official source confirms it | reported | [Social Media Today, 2025-12-18](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/) |
 | Caption length | 2,200 characters | unverified | not stated on the content publishing page |
 | Feed preview | about 125 characters before "more" (Latin text; CJK shows fewer) | unverified | community figure, used only as an approximate preview |
 

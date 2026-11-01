@@ -11,7 +11,7 @@ Taiwan's Chinese-language AI and pharma conversation is often on Threads before 
 
 ## Credentials and permissions
 - `THREADS_ACCESS_TOKEN` as an environment variable only. Never write it to a file, commit it, or print it. Long-lived Threads tokens last 60 days; refreshing one is Josh's call.
-- The Meta app needs `threads_basic` and `threads_keyword_search`. **Without an approved `threads_keyword_search`, Meta does not return an error: it searches only the token owner's own posts.** The script warns when every hit is Josh's own. Requesting that permission (App Review) is a human gate: ask Josh.
+- The Meta app needs `threads_basic` and `threads_keyword_search`. **Without an approved `threads_keyword_search`, Meta does not return an error: it searches only the token owner's own posts.** The script warns when every hit is Josh's own. Requesting that permission (App Review) is a human gate: ask Josh. **Status (2026-11-01): Josh decided not to request it for now.** Until he does, x-scout is the Scout's live source; threads-scout runs offline (`--input`) or on Josh's own posts only, so don't run it on a schedule.
 - Without a token, use `--input` with a saved response to work offline.
 
 ## Usage
