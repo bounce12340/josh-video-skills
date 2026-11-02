@@ -27,7 +27,8 @@ josh-video-skills/
 │   ├── render.py
 │   └── fetch_fonts.py       # downloads the Noto fonts into covers/fonts/ (not committed)
 ├── josh-video-router/       # Main entry point (router)
-│   └── SKILL.md
+│   ├── SKILL.md
+│   └── scripts/             # check_skill.sh, copy_lint.py (IG / Threads / X copy vs house rules and limits)
 ├── interview-reel/          # Celebrity interview / talk clip Reels (commentary intercut with original audio)
 │   ├── SKILL.md
 │   ├── examples/
@@ -53,11 +54,20 @@ josh-video-skills/
 │   ├── SKILL.md
 │   ├── scripts/x_scout.py
 │   └── examples/
-├── analytics/               # style_compare.py: median metrics per skill / style from X exports
+├── threads-scout/           # Read-only Threads topic watcher (official keyword search), same topic table as x-scout
+│   ├── SKILL.md
+│   ├── scripts/threads_scout.py
+│   └── examples/
+├── analytics/               # Median metrics per skill / style for X, Instagram, Threads
 │   ├── README.md
-│   ├── style_compare.py
+│   ├── style_compare.py     # --platform, --min-age-hours, --rate, --outliers
+│   ├── meta_insights.py     # own IG / Threads insights → CSV (official APIs, read-only)
+│   ├── queue_to_tags.py     # publish-queue.md → style_tags.csv rows
 │   └── style_tags.csv
-└── opus-5-5-prompts/        # Reference list of viral Opus 5.5 video prompts (links only, no prompt text)
+├── references/              # meta-platforms.md (IG / Threads / X limits with sources), github-ig-threads-survey.md
+├── opus-5-5-prompts/        # Reference list of viral Opus 5.5 video prompts (links only, no prompt text)
+├── tests/                   # Offline tests for the Python scripts (fictional fixtures, no tokens)
+└── .github/workflows/       # CI: runs the tests on Ubuntu and Windows for every PR
     ├── README.md
     ├── catalog.md
     └── build_catalog.py
@@ -77,7 +87,8 @@ Agent workflow (preflight, human gates, costs, failures, done, handoff): see [AG
 | lemo-opuscar-house | lemo-opuscar's Edit & Documentary and Evidence Films styles at 1080x1920 with ElevenLabs voices | Straight AI / startup news (Caption News), weekly roundups (Broadcast News Package), incident reconstructions (Visual Investigation) |
 | openmontage-house | OpenMontage pipelines run under the house rules | Long-to-short, podcasts, dubbing, screen tutorials, narration-free montage, archival footage |
 | x-scout | Topic proposals from recent X posts (read-only) | Looking for something to make |
-| analytics | Median metrics per skill / style from X exports | Reviewing what worked after publishing |
+| threads-scout | Topic proposals from public Threads posts (read-only, official API) | Looking for Traditional Chinese topics |
+| analytics | Median metrics per skill / style for X, Instagram, Threads; own IG / Threads insights pull | Reviewing what worked after publishing |
 | opus-5-5-prompts | A style reference list (links only) | Picking a visual style for a code-rendered video |
 
 The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the recommended-style rule for topic proposals live in [INDEX.md](INDEX.md#skill-matrix-topics-and-agents).
@@ -90,7 +101,7 @@ The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the 
    ```bash
    git clone https://github.com/bounce12340/josh-video-skills.git
    cd josh-video-skills
-   for s in josh-video-router interview-reel stock-footage-reel screen-record diagram-design lemo-opuscar-house openmontage-house x-scout; do
+   for s in josh-video-router interview-reel stock-footage-reel screen-record diagram-design lemo-opuscar-house openmontage-house x-scout threads-scout; do
      cp -r "$s" ~/.claude/skills/
    done
    ```
@@ -98,6 +109,7 @@ The skill × topics × agents matrix, the opus-5-5-prompts style picks, and the 
 3. `<SKILLS_DIR>` in the docs means the single folder holding all skills (including third-party ones such as OpenMontage). Scripts look for `stock-footage-reel/` and `OpenMontage/` one level above the skill folder by default, so keeping them all at the same level is recommended.
 4. screen-record needs its Node dependencies first: `cd screen-record && npm install && npx playwright install chromium`.
 5. Download the cover and subtitle fonts: `python covers/fetch_fonts.py` (needs Pillow: `pip install pillow`).
+6. Check the scripts still work after a change: `python3 -m unittest discover -s tests -v` (offline, no tokens; CI runs the same on every PR).
 6. On Windows, run the Python scripts with `py` (the `python3` in WindowsApps is only a Store stub). The build scripts call covers/render.py with the same interpreter and fall back to the fonts in `covers/fonts/` when the Linux system fonts are missing.
 7. Install third-party skills as needed (see "Third-party skills" below); interview-reel and openmontage-house in particular use OpenMontage.
 
@@ -128,6 +140,8 @@ Environment variables read by the scripts. `BRAND_NAME`, `BRAND_HANDLE`, and `SF
 | `ELEVENLABS_VOICE_ID_EN` | English voiceover voice_id for interview-reel's tts.py (Josh: `xBHPgy3hJ2fclZQIoDnv`) |
 | `SFR_USER_AGENT`, `SFR_CACHE` | stock-footage-reel's User-Agent and cache location |
 | `X_BEARER_TOKEN` | Read-only X API token for x-scout and optional analytics pulls. Environment variable only; never commit it |
+| `THREADS_ACCESS_TOKEN` | Threads API token for threads-scout (`threads_keyword_search`) and meta_insights.py (`threads_manage_insights`). Environment variable only |
+| `IG_ACCESS_TOKEN`, `IG_USER_ID`, `IG_GRAPH_BASE` | Instagram professional-account token and user id for meta_insights.py; `IG_GRAPH_BASE` switches to `https://graph.instagram.com/v26.0` for Instagram-Login tokens. Environment variables only |
 
 English voiceover (since 2026-10-20) uses Josh's own ElevenLabs voice "Josh - Calm, Warm Taiwanese narrator" (voice_id `xBHPgy3hJ2fclZQIoDnv`, model `eleven_multilingual_v2`; Josh confirmed it is his voice and approved its use). Scripts read it from the `ELEVENLABS_VOICE_ID_EN` environment variable (no voice_id is hard-coded); a spec's `voice_id` overrides it. Budget about 1,800 characters of credit per video and always use `generations_count: 1`. If you fork this repo, use your own voice.
 
@@ -187,6 +201,8 @@ Files written for this repo are released under the [MIT License](LICENSE), Copyr
 - **設定**：文件裡的 `<YOUR_ELEVENLABS_VOICE_ID>`、`<YOUR_VOICE_NAME>`、`<SKILLS_DIR>`、`<YOUR_WORKSPACE>`、`<YOUR_CONTACT_URL>` 要換成自己的值。金鑰只放環境變數，不要寫進檔案或 commit。
 - **lemo-opuscar 新風格**：`lemo-opuscar-house/` 整理了 LemoLab 的 lemo-opuscar 在 2026 年 10 月新增的「剪輯與紀實」（2026-10-22，8 種）和「實證影像」（2026-10-16，8 種）風格，以及「做成自己的風格」（MY-STYLES.md）。適合 AI 新聞用 Caption News、每週整理用 Broadcast News Package、事件重建用 Visual Investigation。上游預設 1920×1080，一律加 `--size 1080x1920` 並重新排版；配音改用 Josh 的 ElevenLabs 聲音，不用 Kokoro。程式碼是 MIT、示範影片是 CC BY 4.0，要標註 LemoLab；有三段示範配音不在授權內，不准拿來用。本 repo 沒有複製上游檔案，只放連結和摘要。
 - **圖解影片**：主題是在解釋一個機制（agent 怎麼運作、工作流程、系統架構、流程說明）時，用 `diagram-design/`。它是第三方 skill [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design)（MIT，Copyright (c) 2025 Cathryn Lavery）的本家規則轉接層：本 repo 一個檔案都沒有複製過來，只寫「什麼題目適合畫圖、要跟它要什麼（繁中要指定 Noto Sans TC，上游字體沒有中文字）、怎麼把 HTML/SVG 輸出成 1080x1920 影片幀、字幕安全區在哪」。上游 skill 的名字也叫 diagram-design，裝的時候要分開放，不要蓋在本 repo 這個資料夾上。
+- **Instagram／Threads**：`threads-scout/` 用 Threads 官方關鍵字搜尋找題材（唯讀，跟 x-scout 共用分類表；app 沒通過 `threads_keyword_search` 審核時，Meta 只會搜到自己的貼文）。`analytics/meta_insights.py` 用官方 API 抓自己 IG Reels 和 Threads 的成效，`style_compare.py` 可以只比同平台、排除太新的貼文、算分享率、列出「是自己中位數的幾倍」。`josh-video-router/scripts/copy_lint.py` 在交給事實編輯前檢查 ig_caption／threads／x_post（破折號、「」、簡體字、中國用語、隱形字元、Threads 500 字與 5 個連結、IG hashtag、X 280 加權字數與正文不放連結）。平台限制和來源整理在 `references/meta-platforms.md`，參考過的 GitHub repo 在 `references/github-ig-threads-survey.md`。一律只用官方 API、唯讀，不用登入中的瀏覽器或非官方套件自動操作。
+- **成效標記與測試**：`analytics/queue_to_tags.py` 讀 `publish-queue.md`（要有草稿資料夾名、發文日期、各平台貼文連結），自動產生 `style_tags.csv` 的標記列；IG／Threads 的貼文 ID 從 meta_insights 的 CSV 對回來，skill／風格從同一支影片已有的標記或 `handoff.md` 的 `skill:`／`style:` 行帶入，找不到的列進 pending 讓數據復盤師補，不會亂猜。`tests/` 是離線測試（假資料、不用 token），每個 PR 會在 Ubuntu 和 Windows 自動跑。
 - **第三方 skill**：都不在本 repo 內，各自保留原本的授權，清單見上方英文表格。
 - **使用注意**：發文前要本人確認；素材授權逐支確認；不要把聲音檔上傳到別的雲端，沒有本人同意不要複製別人的聲音。
 - **授權**：本 repo 自寫的檔案以 [MIT License](LICENSE) 釋出，Copyright (c) 2026 Josh Tsai（bounce12340）。

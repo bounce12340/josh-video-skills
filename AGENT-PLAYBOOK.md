@@ -16,7 +16,11 @@ Stop before starting if any required item is missing, and report what is missing
 | screen-record | Public http(s) URL, spec.json | `node_modules/` installed (`npm install`), Chromium for Playwright |
 | openmontage-house | Source media (and confirmed right to use it) or topic, house rules | `source OpenMontage/om-env.sh`, registry support envelope; no paid keys (none set) |
 | x-scout | topics.json | `X_BEARER_TOKEN` env var (or `--input` file) |
-| analytics/style_compare.py | X analytics CSV export, `analytics/style_tags.csv` rows | Column names (`--id-col`, `--metrics`) |
+| threads-scout | topics.json (plain keywords), x-scout installed at the same level | `THREADS_ACCESS_TOKEN` env var with `threads_keyword_search` approved (or `--input` file) |
+| analytics/style_compare.py | Metrics CSV (X export or meta_insights.py output), `analytics/style_tags.csv` rows with `platform` | Column names (`--id-col`, `--metrics`); `--platform` when tags mix platforms |
+| analytics/meta_insights.py | Platform, date range | `IG_ACCESS_TOKEN` + `IG_USER_ID`, or `THREADS_ACCESS_TOKEN` (insights scopes) as env vars |
+| analytics/queue_to_tags.py | `publish-queue.md` with the draft folder, posting date, and live post URL per platform | meta_insights.py CSVs for IG / Threads (media ids); dry run before `--apply` |
+| copy_lint.py (router) | The draft folder with ig_caption.txt, threads.txt, x_post.txt | Python 3 only; no ERROR before handoff |
 
 All skills: the source must be traceable (URL + author + date in facts.md / credits), and secrets come from environment variables only.
 
@@ -45,6 +49,9 @@ Use only these documented figures. Anything else counts as **unknown**: say "cos
 | ElevenLabs English voiceover (Josh - Calm, Warm Taiwanese narrator, `xBHPgy3hJ2fclZQIoDnv`) | About 1,800 characters of credit per video, `generations_count: 1` (sun-reel English: 1,884 actual) | team `voice.md`, `voiceover-process.md` |
 | ElevenLabs `creative_generate_speech` | Default `generations_count` is 4 = 4x credits; always set 1. Resending the same request charges again | stock-footage-reel SKILL.md |
 | X post with an external link | $0.20 vs $0.015 without a link | X API Engineer (router Step 3) |
+| Threads keyword search (threads-scout) | Free; 2,200 queries per user per rolling 24 h, shared across all apps, repeats count again | [references/meta-platforms.md](references/meta-platforms.md) |
+| IG / Threads insights (meta_insights.py) | Free; one request per post, so keep `--limit` small and run weekly | Meta docs (same file) |
+| Instagram API publishing (not used today; posting is manual) | Team cap 50 posts per 24 h: Meta's page says both 50 and 100, Josh chose the lower figure (2026-11-01) | references/meta-platforms.md |
 | Pexels, Wikimedia, Prelinger, Playwright, OpenMontage local tools | Free | licenses.md, SKILL.md files |
 | Paid generation (Kling, Veo, Seedance, FLUX, Atlas Cloud…) | Unknown / no keys set; requires Josh | openmontage-house SKILL.md |
 
@@ -60,12 +67,16 @@ Check ElevenLabs credits with `estimate_only` (router) or `tts.py --dry-run` (in
 | File over 45 MB | Retry | build.py re-encodes at lower bitrate automatically; else `video-pipeline/reel.sh ig`; confirm with `ffprobe` |
 | Missing skill or script | Fall back or report | `check_skill.sh` fails → stock-footage-reel if the topic fits; otherwise stop and ask the main bot. Don't install third-party skills on your own |
 | Placeholder settings | Report | `build.py --check` error lists the env vars to set |
+| threads-scout returns only Josh's own posts | Expected for now | `threads_keyword_search` is not requested (Josh, 2026-11-01). Use x-scout; don't report it again unless Josh changes this |
+| Meta insights metric rejected / token expired | Report | `meta_insights.py` warns per post: pass current names with `--metrics`; an auth error stops the run. Never paste a token into a file to fix it |
+| copy_lint.py ERROR | Fix | Rewrite the line (never shorten by dropping the source credit); `--fix-invisible` removes invisible characters only |
 
 ## 5. Definition of done (self-check before handoff)
 
 - **Files** in `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`: final mp4 (IG version ≤ 45 MB), script.txt, storyboard.md, facts.md, credits, ig_caption.txt, threads.txt, x_post.txt, x_longpost.md, covers, viral score, handoff note. English videos keep their copy in `en/`.
 - **Voiceover matches subtitles word for word**: the final subtitle file is the single source.
 - **No brand logos** on screen or cover.
+- **Copy passes `copy_lint.py`** with no ERROR (WARNs reviewed).
 - **Footage matches the line's real context** (no generic stock that contradicts the meaning).
 - **BGM present**: credit it in the caption when needed. A missing music credit doesn't block the video.
 - **AI-voiceover label on TikTok and YouTube only**, not on IG, Threads, X, or LinkedIn.
@@ -79,7 +90,7 @@ Send these to 事實編輯 (Fact Editor) and then to Grok Boss:
 1. Draft path (`03-drafts/<題目>/`) and final file name, duration, size.
 2. Viral score (x/14), naming which of the 7 points it hits and which it misses (e.g. P1 takeaway, P2 real numbers, P6 search term, P8 different template).
 3. Source list: URLs, authors, dates; footage and music licenses.
-4. Recommended style plus a one-line reason (the [recommended-style rule](INDEX.md#topic-proposals-recommended-style-rule)).
+4. Recommended style plus a one-line reason; also write `skill: <skill>` and `style: <style>` lines into `handoff.md` so `queue_to_tags.py` can tag the post after it goes live (the [recommended-style rule](INDEX.md#topic-proposals-recommended-style-rule)).
 5. Open questions: unverifiable facts, lines to audition, anything Josh must decide.
 
 ## 7. Never do
@@ -94,6 +105,8 @@ Send these to 事實編輯 (Fact Editor) and then to Grok Boss:
 - Never fabricate numbers or quotes.
 - Never send or reply to email or messages on Josh's behalf.
 - Never print secrets (API keys, tokens).
+- Never automate Instagram or Threads through a logged-in browser, exported cookies, or an unofficial / reverse-engineered client (e.g. junhoyeo/threads-api). Official APIs only, read-only ([references/github-ig-threads-survey.md](references/github-ig-threads-survey.md)).
+- Never compare raw metrics across platforms, or a day-old post with a week-old one.
 
 ## 8. Worked example: Dan Koe hand-drawn, English
 

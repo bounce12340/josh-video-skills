@@ -50,6 +50,7 @@ If it is missing: fall back to stock-footage-reel when the topic fits it (narrat
 1. `reel.sh mix` (when there is BGM) → `reel.sh qa` → `reel.sh ig`
 2. Covers: every build writes 3 to 6 cover options to `cover_options/` with `compare_reel.png` and `compare_post.png`. Deliver both comparison sheets with the drafts and let Josh pick; then run `render.py cover_spec.json --pick <code>` to make his pick the main cover. Never pick for him.
 3. Deliver script.txt, storyboard.md, ig_caption.txt, threads.txt, facts.md, x_post.txt, x_longpost.md to `<YOUR_WORKSPACE>/media-team/03-drafts/<題目>/`
+   - Run `python3 <SKILLS_DIR>/josh-video-router/scripts/copy_lint.py <YOUR_WORKSPACE>/media-team/03-drafts/<題目>/` and fix every ERROR before handoff. It checks the Step 2 wording rules (em-dashes, 「」, simplified characters, mainland wording, invisible characters) and the platform limits: Threads 500 characters / 5 links / 1 topic tag per post, IG hashtags (5, reported cap) and the caption's feed preview, X weighted 280 and no link in the post body. In threads.txt, separate the posts of a chain with a line containing only `---`. Sources: [references/meta-platforms.md](../references/meta-platforms.md).
 4. X drafts: `x_post.txt` (single post) and `x_longpost.md` (long post) go to X Launch Traction; Josh approves; then Grok Boss posts. Keep external links out of the post body and put them in a reply instead (per X API Engineer, a post with a link costs $0.20 vs $0.015 without). On X, the original-video link and credit required in Step 2 go in that reply.
 
 ## Step 4: Hand off to the fact editor
@@ -63,7 +64,7 @@ If it is missing: fall back to stock-footage-reel when the topic fits it (narrat
 - **Grok Boss**: loads this first for any video request and names the target skill in the brief.
 - **內容製作 (Content Producer)**: follows Steps 0 to 3 and delivers the Step 3 files.
 - **事實編輯 (Fact Editor)**: uses Step 2 as the review checklist and writes the Step 4 report.
-- **情報偵察員 (Scout)**: uses the decision table to attach a skill and style to each topic proposal (rule: [INDEX.md](../INDEX.md#topic-proposals-recommended-style-rule)).
+- **情報偵察員 (Scout)**: runs x-scout and threads-scout, and uses the decision table to attach a skill and style to each topic proposal (rule: [INDEX.md](../INDEX.md#topic-proposals-recommended-style-rule)).
 - **數據復盤師 (Analytics)**: tags each published video with the skill chosen in Step 1.
 - **Coding agent (Claude Code / Cursor)**: input: topic + sources; output: the chosen skill name, then the Step 3 deliverables. Never posts.
 

@@ -1,0 +1,16 @@
+{
+  "queries": [
+    "Claude Code",
+    "AI 代理",
+    {"q": "TFDA", "media_type": "TEXT"},
+    "一人公司",
+    {"q": "AI", "search_mode": "TAG"}
+  ],
+  "classify": {
+    "interview": ["interview", "podcast", "keynote", "fireside", "訪談", "專訪", "演講", "對談"],
+    "tool_demo": ["demo", "built with", "open source", "github.com", "launch", "開源", "實測", "教學", "做了一個"],
+    "pharma_regulatory": ["fda", "ema", "tfda", "regulator", "guidance", "approval", "clinical", "食藥署", "查驗登記", "臨床試驗", "法規"],
+    "numbers_news": ["$", "%", "billion", "million", "benchmark", "revenue", "億", "營收", "估值", "跑分"],
+    "one_person_company": ["solo founder", "one-person", "indie hacker", "bootstrapped", "mrr", "一人公司", "個人品牌", "副業"]
+  }
+}

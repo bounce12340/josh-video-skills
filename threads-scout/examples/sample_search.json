@@ -1,0 +1,8 @@
+{"data": [
+  {"id": "t1", "username": "ai_news_tw", "permalink": "https://www.threads.com/@ai_news_tw/post/AAA1", "timestamp": "2026-10-30T01:00:00+0000", "media_type": "TEXT_POST", "text": "黃仁勳最新專訪：AI 代理會改變每一家公司", "is_reply": false},
+  {"id": "t2", "username": "rx_watch", "permalink": "https://www.threads.com/@rx_watch/post/AAA2", "timestamp": "2026-10-30T02:00:00+0000", "media_type": "TEXT_POST", "text": "TFDA 公告 AI 輔助臨床試驗指引草案", "is_reply": false},
+  {"id": "t3", "username": "builder_amy", "permalink": "https://www.threads.com/@builder_amy/post/AAA3", "timestamp": "2026-10-30T03:00:00+0000", "media_type": "VIDEO", "text": "用 Claude Code 做了一個自動剪片工具，開源在 github.com/amy/clip", "is_reply": false},
+  {"id": "t4", "username": "money_tw", "permalink": "https://www.threads.com/@money_tw/post/AAA4", "timestamp": "2026-10-30T04:00:00+0000", "media_type": "TEXT_POST", "text": "Anthropic 年化營收傳破 50 億美元", "is_reply": false},
+  {"id": "t5", "username": "solo_lin", "permalink": "https://www.threads.com/@solo_lin/post/AAA5", "timestamp": "2026-10-30T05:00:00+0000", "media_type": "TEXT_POST", "text": "一人公司第一年：我怎麼用 AI 接案", "is_reply": false},
+  {"id": "t6", "username": "someone", "permalink": "https://www.threads.com/@someone/post/AAA6", "timestamp": "2026-10-30T06:00:00+0000", "media_type": "TEXT_POST", "text": "同意樓上", "is_reply": true}
+]}

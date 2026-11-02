@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]   # builds also run on Windows (covers/README.md)
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: "1"   # scripts print Traditional Chinese; Windows consoles default to a legacy code page
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Byte-compile every Python script
+        run: python -m compileall -q .
+      - name: Shell syntax
+        if: runner.os == 'Linux'
+        run: for f in $(git ls-files '*.sh'); do bash -n "$f"; done
+      - name: Offline script tests (fictional fixtures, no tokens, no network)
+        run: python -m unittest discover -s tests -v
